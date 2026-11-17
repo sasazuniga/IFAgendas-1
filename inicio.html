@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ifAgendas - Página Principal</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <!-- Ícones do FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- BARRA LATERAL -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <div class="logo-box">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <span>IFAgendas</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active"><i class="fa-solid fa-house"></i></a>
+                <a href="calendario.html" class="nav-item"><i class="fa-solid fa-calendar-days"></i></a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-book-open"></i></a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-clipboard-list"></i></a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-chart-line"></i></a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-bullseye"></i></a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item"><i class="fa-solid fa-gear"></i></a>
+            </div>
+        </aside>
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main class="main-content">
+            
+            <!-- CABEÇALHO -->
+            <header class="top-header">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Pesquisar...">
+                </div>
+                <div class="user-profile">
+                    <i class="fa-solid fa-circle-user"></i>
+                </div>
+            </header>
+
+            <!-- BANNER DE BOAS-VINDAS -->
+            <section class="welcome-banner">
+                <div class="welcome-text">
+                    <h1>Olá, Aluno!</h1>
+                    <p>Aqui tens um resumo da tua semana e daquilo em que precisas de focar hoje.</p>
+                </div>
+                <div class="welcome-badge">
+                    <span>Organiza a tua semana aqui!</span>
+                </div>
+            </section>
+
+            <!-- GRADE DE CARTÕES -->
+            <div class="dashboard-grid">
+                
+                <!-- 1. Próximos compromissos -->
+                <div class="card compromissos-card">
+                    <div class="card-header-title">
+                        <i class="fa-solid fa-calendar"></i>
+                        <h3>Próximos compromissos</h3>
+                    </div>
+                    <div class="date-badge">Hoje - 22/09/2026</div>
+                    
+                    <ul class="agenda-list">
+                        <li><span class="dot green"></span> 8:00 Aula</li>
+                        <li><span class="dot green"></span> 13:00 Fim da Aula</li>
+                        <li class="highlight"><span class="dot red"></span> 15:00 Estudar Biologia</li>
+                        <li><span class="dot red"></span> 17:30 Ginásio</li>
+                        <li><span class="dot red"></span> 19:30 Exercícios de Biologia</li>
+                    </ul>
+                </div>
+
+                <!-- 2. Estudo recente -->
+                <div class="card estudo-card">
+                    <div class="card-header-title">
+                        <i class="fa-solid fa-book"></i>
+                        <h3>Estudo recente</h3>
+                    </div>
+                    
+                    <ul class="study-list">
+                        <li>
+                            <div class="study-item-title"><span class="dot blue"></span> <strong>Matemática</strong></div>
+                            <span class="study-details">18/09 . 1h30min</span>
+                        </li>
+                        <li>
+                            <div class="study-item-title"><span class="dot orange"></span> <strong>História</strong></div>
+                            <span class="study-details">17/09 . 1h00min</span>
+                        </li>
+                        <li>
+                            <div class="study-item-title"><span class="dot purple"></span> <strong>Português</strong></div>
+                            <span class="study-details">16/09 . 1h00min</span>
+                        </li>
+                    </ul>
+                </div>
+
+                <!-- 3. Feedbacks -->
+                <div class="card feedbacks-card">
+                    <div class="card-header-title">
+                        <i class="fa-solid fa-comments"></i>
+                        <h3>Feedbacks</h3>
+                    </div>
+                    
+                    <div class="feedback-section">
+                        <label>Como está a ser a tua experiência?</label>
+                        <div class="feedback-input-box"></div>
+                    </div>
+
+                    <div class="feedback-section">
+                        <label>Dúvidas ou alguma sugestão</label>
+                        <div class="feedback-input-box"></div>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+
+    </div>
+    <a href="calendario.html" class="nav-item"><i class="fa-solid fa-calendar-days"></i></a>
+
+</body>
+</html>

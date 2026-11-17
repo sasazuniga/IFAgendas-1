@@ -1,0 +1,68 @@
+.calendar-container {
+    background: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    overflow-x: auto;
+}
+
+.calendar-table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+}
+
+.calendar-table th {
+    background-color: #34495e;
+    color: white;
+    text-align: center;
+    padding: 12px;
+    font-size: 0.85rem;
+    letter-spacing: 1px;
+}
+
+.calendar-table td {
+    height: 85px;
+    border: 1px solid #e0e0e0;
+    vertical-align: top;
+    padding: 8px;
+    position: relative;
+    background-color: #ffffff;
+}
+
+.calendar-table td.other-month {
+    background-color: #ebf1ef;
+}
+
+.day-number {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+/* Eventos dentro do calendário */
+.event-tag {
+    font-size: 0.75rem;
+    font-weight: bold;
+    color: #333;
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+/* Cores das bolinhas dos eventos */
+.dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    display: inline-block;
+}
+
+.dot.red { background-color: #e53935; }
+.dot.purple { background-color: #ab47bc; }
+.dot.orange { background-color: #fb8c00; }
+.dot.blue { background-color: #1e88e5; }
+.dot.green { background-color: #4caf50; }

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ifAgendas - Calendário</title>
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/calendario.css">
+    <!-- Ícones do FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+    <div class="app-container">
+        
+        <!-- BARRA LATERAL -->
+        <aside class="sidebar">
+            <div class="sidebar-logo">
+                <div class="logo-box">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <span>IFAgendas</span>
+                </div>
+            </div>
+            
+            <nav class="sidebar-nav">
+                <a href="inicio.html" class="nav-item"><i class="fa-solid fa-house"></i></a>
+                <a href="calendario.html" class="nav-item active"><i class="fa-solid fa-calendar-days"></i></a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-book-open"></i></a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-clipboard-list"></i></a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-chart-line"></i></a>
+                <a href="#" class="nav-item"><i class="fa-solid fa-bullseye"></i></a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="#" class="nav-item"><i class="fa-solid fa-gear"></i></a>
+            </div>
+        </aside>
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main class="main-content">
+            
+            <!-- CABEÇALHO -->
+            <header class="top-header">
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Calendário">
+                </div>
+                <div class="user-profile">
+                    <i class="fa-solid fa-circle-user"></i>
+                </div>
+            </header>
+
+            <!-- BANNER DE TÍTULO -->
+            <section class="welcome-banner">
+                <div class="welcome-text">
+                    <h1>Calendário</h1>
+                </div>
+                <div class="welcome-badge">
+                    <span>Fique atento as suas atividades</span>
+                </div>
+            </section>
+
+            <!-- TABELA DO CALENDÁRIO -->
+            <div class="calendar-container">
+                <table class="calendar-table">
+                    <thead>
+                        <tr>
+                            <th>DOM</th>
+                            <th>SEG</th>
+                            <th>TER</th>
+                            <th>QUA</th>
+                            <th>QUI</th>
+                            <th>SEX</th>
+                            <th>SÁB</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td class="other-month"></td>
+                            <td class="other-month"></td>
+                            <td class="other-month"></td>
+                            <td class="other-month"></td>
+                            <td class="other-month"></td>
+                            <td>
+                                <span class="day-number">1</span>
+                                <div class="event-tag"><span class="dot red"></span> Prova Inglês</div>
+                            </td>
+                            <td><span class="day-number">2</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-number">3</span></td>
+                            <td><span class="day-number">4</span></td>
+                            <td><span class="day-number">5</span></td>
+                            <td><span class="day-number">6</span></td>
+                            <td><span class="day-number">7</span></td>
+                            <td><span class="day-number">8</span></td>
+                            <td><span class="day-number">9</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-number">10</span></td>
+                            <td><span class="day-number">11</span></td>
+                            <td><span class="day-number">12</span></td>
+                            <td><span class="day-number">13</span></td>
+                            <td><span class="day-number">14</span></td>
+                            <td><span class="day-number">15</span></td>
+                            <td>
+                                <span class="day-number">16</span>
+                                <div class="event-tag"><span class="dot purple"></span> Português</div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <span class="day-number">17</span>
+                                <div class="event-tag"><span class="dot orange"></span> História</div>
+                            </td>
+                            <td>
+                                <span class="day-number">18</span>
+                                <div class="event-tag"><span class="dot blue"></span> Matemática</div>
+                            </td>
+                            <td><span class="day-number">19</span></td>
+                            <td><span class="day-number">20</span></td>
+                            <td><span class="day-number">21</span></td>
+                            <td><span class="day-number">22</span></td>
+                            <td><span class="day-number">23</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-number">24</span></td>
+                            <td><span class="day-number">25</span></td>
+                            <td><span class="day-number">26</span></td>
+                            <td><span class="day-number">27</span></td>
+                            <td><span class="day-number">28</span></td>
+                            <td><span class="day-number">29</span></td>
+                            <td><span class="day-number">30</span></td>
+                        </tr>
+                        <tr>
+                            <td><span class="day-number">31</span></td>
+                            <td class="other-month"></td>
+                            <td class="other-month"></td>
+                            <td class="other-month"></td>
+                            <td class="other-month"></td>
+                            <td class="other-month"></td>
+                            <td class="other-month"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+        </main>
+
+    </div>
+
+</body>
+</html>

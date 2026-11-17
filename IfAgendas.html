@@ -1,0 +1,86 @@
+
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>ifAgendas - Login</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <main class="pagina-login">
+
+        <!-- LADO ESQUERDO -->
+        <section class="lado-esquerdo">
+
+            <div class="logo">
+                 <img src="img/ifsp.png" alt="ifsp" class="ifsp">
+                
+
+            </div>
+
+            <img src="img/livros.png" alt="Livros" class="livros">
+
+        </section>
+
+
+        <!-- LADO DIREITO -->
+        <section class="lado-direito">
+
+            <div class="cartao-login">
+
+                <h2>Bem-vindo(a)!</h2>
+
+                <p>Faça login para acessar sua agenda.</p>
+
+                <form id="formLogin">
+
+                    <input
+                        type="text"
+                        id="usuario"
+                        placeholder="Usuário"
+                    >
+
+                    <input
+                        type="password"
+                        id="senha"
+                        placeholder="Senha"
+                    >
+
+                    <button type="submit">
+                        Entrar
+                    </button>
+
+                </form>
+
+                <div class="separador">
+                    <span></span>
+                    <p>ou</p>
+                    <span></span>
+                </div>
+
+                <button type="button" id="entrarGoogle">
+                    Entrar com o Google
+                </button>
+
+                <button type="button" id="esqueceuSenha">
+                    Esqueceu a sua senha?
+                </button>
+
+                <p id="mensagemLogin"></p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="js/script.js"></script>
+
+</body>
+</html>
