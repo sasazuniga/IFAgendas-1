@@ -1,171 +1,224 @@
+
+/* CONFIGURAÇÕES GERAIS */
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
 body {
-    background-color: #dbebe3;
-    color: #333;
+    font-family: 'Open Sans', sans-serif;
+    background-color: #e3f4eb;
+    color: #111;
 }
 
 .app-container {
     display: flex;
-    height: 100vh;
-    overflow: hidden;
+    min-height: 100vh;
 }
 
 /* BARRA LATERAL */
+
 .sidebar {
     width: 80px;
-    background-color: #c8ded4;
+    background-color: #a9cda7;
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
-    padding: 20px 0;
-    border-right: 1px solid #b7ccc2;
+    position: fixed;
+    height: 100vh;
+    border-right: 2px solid #789b76;
+}
+
+.sidebar-logo {
+    width: 100%;
+    padding: 20px 5px;
+    text-align: center;
+    background-color: #e3f4eb;
 }
 
 .sidebar-logo .logo-box {
-    background: white;
-    padding: 8px;
-    border-radius: 8px;
     text-align: center;
-    font-size: 0.7rem;
+}
+
+.sidebar-logo i {
+    font-size: 30px;
+    color: #397b43;
+}
+
+.sidebar-logo span {
+    display: block;
+    font-size: 11px;
     font-weight: bold;
-    color: #2e7d32;
+    margin-top: 8px;
 }
 
 .sidebar-nav {
+    width: 100%;
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    flex: 1;
 }
 
 .nav-item {
-    font-size: 1.3rem;
-    color: #4a5d53;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    min-height: 55px;
+    color: #263d2c;
+    font-size: 28px;
     text-decoration: none;
-    padding: 10px;
-    border-radius: 8px;
     transition: 0.2s;
 }
 
-.nav-item.active, .nav-item:hover {
-    color: #000;
-    background-color: #b5ccbf;
+.nav-item:hover {
+    background-color: #cce8cc;
+}
+
+.nav-item.active {
+    background-color: #e3f4eb;
+    color: #507b59;
+}
+
+.sidebar-footer {
+    width: 100%;
+    padding: 12px 0;
 }
 
 /* CONTEÚDO PRINCIPAL */
+
 .main-content {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    padding: 25px 40px;
-    overflow-y: auto;
+    margin-left: 80px;
+    padding: 20px 30px;
+    width: calc(100% - 80px);
+    min-width: 0;
 }
 
 /* CABEÇALHO */
+
 .top-header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 25px;
+    margin-bottom: 35px;
+    gap: 15px;
 }
 
 .search-box {
     display: flex;
     align-items: center;
-    background: white;
-    border: 2px solid #2e7d32;
-    border-radius: 30px;
-    padding: 8px 15px;
-    width: 320px;
+    border: 1.5px solid #263d2c;
+    border-radius: 35px;
+    padding: 12px 20px;
+    width: 340px;
+    max-width: 100%;
+    min-width: 0;
+    gap: 15px;
 }
 
 .search-box i {
-    color: #555;
-    margin-right: 10px;
+    font-size: 24px;
+    color: #263d2c;
 }
 
 .search-box input {
+    background: transparent;
     border: none;
+    border-left: 1px solid #263d2c;
     outline: none;
+    padding-left: 12px;
+    font-size: 21px;
     width: 100%;
-    font-size: 1rem;
+    min-width: 0;
+    color: #111;
+}
+
+.search-box input::placeholder {
+    color: #111;
 }
 
 .user-profile i {
-    font-size: 2.2rem;
-    color: #555;
+    font-size: 35px;
+    color: #263d2c;
 }
 
 /* BANNER DE BOAS-VINDAS */
+
 .welcome-banner {
-    background-color: #c5e1d4;
-    border-radius: 12px;
-    padding: 25px 35px;
+    background-color: #cceecb;
+    padding: 25px;
     display: flex;
-    justify-content: space-between;
     align-items: center;
+    justify-content: space-between;
+    width: 65%;
+    min-height: 138px;
     margin-bottom: 30px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    gap: 15px;
 }
 
 .welcome-text h1 {
-    font-family: 'Brush Script MT', cursive, sans-serif;
-    font-size: 3rem;
-    color: #113f28;
+    font-family: 'Dancing Script', cursive;
+    font-size: 65px;
+    color: #111;
     margin-bottom: 5px;
 }
 
 .welcome-text p {
-    font-size: 1rem;
-    color: #2b4d3d;
+    font-size: 16px;
+    color: #437d65;
 }
 
 .welcome-badge {
-    background-color: #f7e1a0;
-    padding: 15px 20px;
-    border-radius: 4px;
-    transform: rotate(3deg);
+    background-color: #f5e1ad;
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
     font-weight: bold;
-    color: #5a4a15;
-    box-shadow: 2px 2px 5px rgba(0,0,0,0.1);
+    transform: rotate(-8deg);
+    border: 5px dashed #cceecb;
+    color: #111;
 }
 
 /* GRADE DE CARTÕES */
+
 .dashboard-grid {
     display: grid;
     grid-template-columns: 1fr 1.1fr 1fr;
     gap: 25px;
 }
 
+/* CARTÕES */
+
 .card {
-    background: white;
-    border-radius: 16px;
+    background-color: #fff;
+    border-radius: 35px;
     padding: 25px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    min-width: 0;
 }
 
 .card-header-title {
     display: flex;
     align-items: center;
     gap: 10px;
-    margin-bottom: 15px;
-    font-size: 1.1rem;
-    color: #113f28;
+    margin-bottom: 20px;
+    font-size: 19px;
+    color: #263d2c;
+}
+
+.card-header-title i {
+    color: #547e50;
 }
 
 /* COMPROMISSOS */
+
 .date-badge {
-    background-color: #e5f4ed;
-    color: #2e7d32;
-    padding: 6px 12px;
+    background-color: #cceecb;
+    color: #437d65;
+    padding: 8px 15px;
     border-radius: 20px;
-    font-size: 0.85rem;
+    font-size: 14px;
     display: inline-block;
     margin-bottom: 15px;
     font-weight: 600;
@@ -182,69 +235,279 @@ body {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 0.95rem;
-    color: #333;
+    font-size: 15px;
+    color: #263d2c;
+    background-color: #e3f4eb;
+    padding: 12px 15px;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.agenda-list li:hover {
+    background-color: #cceecb;
 }
 
 .agenda-list li.highlight {
-    background-color: #f5b7b1;
-    padding: 8px 12px;
-    border-radius: 8px;
+    background-color: #f5d5d5;
     font-weight: bold;
 }
 
-/* ESTUDO RECENTE */
+/* ESTADOS DOS COMPROMISSOS */
+
+.agenda-list li.concluido {
+    color: #547e50;
+    background-color: #cceecb;
+}
+
+.agenda-list li.concluido .dot {
+    background-color: #547e50;
+}
+
+.agenda-list li.pendente {
+    color: #b93838;
+    background-color: #f5dddd;
+}
+
+.agenda-list li.pendente .dot {
+    background-color: #b93838;
+}
+
+/* ESTUDOS RECENTES */
+
 .study-list {
     list-style: none;
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 15px;
     margin-top: 15px;
+}
+
+.study-list li {
+    background-color: #e3f4eb;
+    border-radius: 15px;
+}
+
+.study-list li a {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    padding: 15px;
+    border-radius: 15px;
+    transition: 0.2s;
+}
+
+.study-list li a:hover {
+    background-color: #cceecb;
 }
 
 .study-item-title {
     display: flex;
     align-items: center;
     gap: 10px;
-    font-size: 1rem;
-    margin-bottom: 3px;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #263d2c;
 }
 
 .study-details {
-    font-size: 0.85rem;
-    color: #666;
+    font-size: 13px;
+    color: #437d65;
     margin-left: 22px;
 }
 
 /* FEEDBACKS */
+
 .feedback-section {
     margin-top: 15px;
+    margin-bottom: 20px;
 }
 
 .feedback-section label {
-    font-size: 0.85rem;
+    font-size: 14px;
     font-weight: bold;
-    color: #333;
+    color: #263d2c;
     display: block;
     margin-bottom: 8px;
 }
 
 .feedback-input-box {
-    background-color: #e8f5e9;
-    height: 65px;
+    background-color: #e3f4eb;
+    height: 75px;
     border-radius: 12px;
 }
 
+/* CAMPOS DE FEEDBACK */
+
+.feedback-section textarea {
+    width: 100%;
+    height: 85px;
+    padding: 12px;
+    border: 2px solid transparent;
+    border-radius: 12px;
+    background-color: #e3f4eb;
+    resize: vertical;
+    font-family: inherit;
+    font-size: 14px;
+    color: #263d2c;
+    outline: none;
+}
+
+.feedback-section textarea:focus {
+    border-color: #78ad72;
+}
+
+.feedback-section textarea::placeholder {
+    color: #78917e;
+}
+
+/* BOTÃO DE FEEDBACK */
+
+.btn-feedback {
+    width: 100%;
+    background-color: #a9cda7;
+    color: #263d2c;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 12px;
+    font-size: 15px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.btn-feedback:hover {
+    background-color: #78ad72;
+    color: white;
+}
+
+#mensagemFeedback {
+    color: #547e50;
+    font-size: 13px;
+    margin-top: 10px;
+}
+
 /* BOLINHAS DE ESTADO */
+
 .dot {
     width: 10px;
     height: 10px;
     border-radius: 50%;
     display: inline-block;
+    flex-shrink: 0;
 }
 
-.dot.green { background-color: #4caf50; }
-.dot.red { background-color: #e53935; }
-.dot.blue { background-color: #1e88e5; }
-.dot.orange { background-color: #fb8c00; }
-.dot.purple { background-color: #ab47bc; }
+.dot.green {
+    background-color: #78ad72;
+}
+
+.dot.red {
+    background-color: #e53935;
+}
+
+.dot.blue {
+    background-color: #1e88e5;
+}
+
+.dot.orange {
+    background-color: #fb8c00;
+}
+
+.dot.purple {
+    background-color: #ab47bc;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 1100px) {
+
+    .dashboard-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 15px;
+    }
+
+}
+
+@media (max-width: 900px) {
+
+    .dashboard-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .welcome-banner {
+        width: 100%;
+    }
+
+    .welcome-text h1 {
+        font-size: 45px;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .sidebar {
+        width: 60px;
+    }
+
+    .sidebar-logo span {
+        font-size: 9px;
+    }
+
+    .nav-item {
+        font-size: 23px;
+    }
+
+    .main-content {
+        margin-left: 60px;
+        width: calc(100% - 60px);
+        padding: 15px;
+    }
+
+    .search-box {
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .search-box input {
+        font-size: 15px;
+    }
+
+    .search-box i {
+        font-size: 18px;
+    }
+
+    .user-profile i {
+        font-size: 28px;
+    }
+
+    .welcome-banner {
+        padding: 15px;
+        flex-wrap: wrap;
+    }
+
+    .welcome-text h1 {
+        font-size: 38px;
+    }
+
+    .welcome-badge {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .card {
+        padding: 18px;
+        border-radius: 25px;
+    }
+
+    .card-header-title {
+        font-size: 17px;
+    }
+
+    .agenda-list li {
+        font-size: 13px;
+    }
+
+}

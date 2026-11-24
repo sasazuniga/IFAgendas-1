@@ -1,153 +1,1030 @@
+
 <!DOCTYPE html>
-<html lang="pt">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ifAgendas - Calendário</title>
-    <link rel="stylesheet" href="css/dashboard.css">
-    <link rel="stylesheet" href="css/calendario.css">
-    <!-- Ícones do FontAwesome -->
+
+    <title>IFAgendas - Calendário</title>
+
+
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    
+<style>
+
+    /* CONFIGURAÇÕES GERAIS */
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Open Sans', sans-serif;
+        background-color: #e3f4eb;
+        color: #111;
+    }
+
+    .app-container {
+        display: flex;
+        min-height: 100vh;
+    }
+
+    /* MENU LATERAL */
+
+    .sidebar {
+        width: 80px;
+        background-color: #a9cda7;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: fixed;
+        height: 100vh;
+        border-right: 2px solid #789b76;
+    }
+
+    .sidebar-logo {
+        width: 100%;
+        padding: 20px 5px;
+        text-align: center;
+        background-color: #e3f4eb;
+    }
+
+    .sidebar-logo i {
+        font-size: 30px;
+        color: #397b43;
+    }
+
+    .sidebar-logo span {
+        display: block;
+        font-size: 11px;
+        font-weight: bold;
+        margin-top: 8px;
+    }
+
+    .sidebar-nav {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+
+    .nav-item {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex: 1;
+        min-height: 55px;
+        color: #263d2c;
+        font-size: 28px;
+        text-decoration: none;
+        transition: 0.2s;
+    }
+
+    .nav-item:hover {
+        background-color: #cce8cc;
+    }
+
+    .nav-item.active {
+        background-color: #e3f4eb;
+        color: #507b59;
+    }
+
+    .sidebar-footer {
+        width: 100%;
+        padding: 12px 0;
+    }
+
+    /* CONTEÚDO PRINCIPAL */
+
+    .main-content {
+        margin-left: 80px;
+        padding: 20px 30px;
+        width: calc(100% - 80px);
+    }
+
+    /* CABEÇALHO */
+
+    .top-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 35px;
+        gap: 15px;
+    }
+
+    .search-box {
+        display: flex;
+        align-items: center;
+        border: 1.5px solid #263d2c;
+        border-radius: 35px;
+        padding: 12px 20px;
+        width: 340px;
+        max-width: 100%;
+        min-width: 0;
+        gap: 15px;
+    }
+
+    .search-box i {
+        font-size: 24px;
+    }
+
+    .search-box input {
+        background: transparent;
+        border: none;
+        border-left: 1px solid #263d2c;
+        outline: none;
+        padding-left: 12px;
+        font-size: 21px;
+        width: 100%;
+        min-width: 0;
+        color: #111;
+    }
+
+    .search-box input::placeholder {
+        color: #111;
+    }
+
+    .user-profile {
+        font-size: 35px;
+        color: #263d2c;
+        cursor: pointer;
+    }
+
+    /* BANNER */
+
+    .welcome-banner {
+        background-color: #cceecb;
+        padding: 25px;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 65%;
+        min-height: 138px;
+        margin-bottom: 8px;
+    }
+
+    .welcome-banner h1 {
+        font-family: 'Dancing Script', cursive;
+        font-size: 65px;
+        color: #111;
+    }
+
+    .welcome-badge {
+        background-color: #f5e1ad;
+        padding: 20px;
+        text-align: center;
+        font-size: 18px;
+        font-weight: bold;
+        transform: rotate(-8deg);
+        border: 5px dashed #cceecb;
+    }
+
+    /* CAIXA DO CALENDÁRIO */
+
+    .calendar-container {
+        background-color: #fff;
+        border-radius: 35px;
+        padding: 25px;
+        margin-top: 25px;
+        width: 100%;
+    }
+
+    /* CONTROLE DOS MESES */
+
+    .calendar-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 25px;
+        gap: 10px;
+    }
+
+    .calendar-header h2 {
+        color: #263d2c;
+        font-size: 25px;
+        font-weight: bold;
+        text-align: center;
+    }
+
+    .calendar-header button {
+        background-color: #a9cda7;
+        color: #263d2c;
+        border: none;
+        border-radius: 12px;
+        width: 42px;
+        height: 42px;
+        flex-shrink: 0;
+        cursor: pointer;
+        font-size: 18px;
+        transition: 0.2s;
+    }
+
+    .calendar-header button:hover {
+        background-color: #78ad72;
+        color: white;
+    }
+
+    /* DIAS DA SEMANA */
+
+    .week-days {
+        display: grid;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        text-align: center;
+        margin-bottom: 15px;
+        color: #437d65;
+        font-weight: bold;
+        font-size: 14px;
+    }
+
+    /* ORGANIZAÇÃO DOS DIAS */
+
+    .calendar-days {
+        display: grid;
+        grid-template-columns: repeat(7, minmax(0, 1fr));
+        gap: 10px;
+    }
+
+    .calendar-day {
+        position: relative;
+        min-height: 75px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #e3f4eb;
+        border: 2px solid transparent;
+        border-radius: 12px;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 18px;
+        color: #263d2c;
+        transition: 0.2s;
+    }
+
+    .calendar-day:hover {
+        background-color: #cceecb;
+    }
+
+    /* DIA ATUAL */
+
+    .calendar-day.today {
+        border: 2px solid #547e50;
+        font-weight: bold;
+    }
+
+    /* DIA SELECIONADO */
+
+    .calendar-day.selected {
+        background-color: #547e50;
+        color: white;
+        font-weight: bold;
+    }
+
+    /* ESPAÇOS VAZIOS */
+
+    .calendar-day.empty {
+        background-color: transparent;
+        border: none;
+        cursor: default;
+    }
+
+    /* BOLINHA DE ATIVIDADE */
+
+    .event-dot {
+        position: absolute;
+        bottom: 9px;
+        width: 8px;
+        height: 8px;
+        background-color: #547e50;
+        border-radius: 50%;
+    }
+
+    .calendar-day.selected .event-dot {
+        background-color: #fff;
+    }
+
+    /* ÁREA DE ATIVIDADES */
+
+    .activities-container {
+        border-top: 2px solid #e3f4eb;
+        margin-top: 25px;
+        padding-top: 25px;
+    }
+
+    .activities-container h3 {
+        color: #263d2c;
+        font-size: 20px;
+        margin-bottom: 18px;
+    }
+
+    /* FORMULÁRIO DE ATIVIDADES */
+
+    .activity-form {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+        margin-top: 20px;
+    }
+
+    .activity-form input {
+        width: 100%;
+        height: 48px;
+        padding: 12px 18px;
+        border: 2px solid transparent;
+        border-radius: 12px;
+        background-color: #e3f4eb;
+        font-size: 16px;
+        font-family: inherit;
+        outline: none;
+        color: #263d2c;
+    }
+
+    .activity-form input:focus {
+        border-color: #78ad72;
+    }
+
+    .activity-form input::placeholder {
+        color: #78917e;
+    }
+
+    /* BOTÃO ADICIONAR */
+
+    .add-button {
+        width: 100%;
+        background-color: #a9cda7;
+        color: #263d2c;
+        border: none;
+        border-radius: 12px;
+        padding: 14px;
+        font-size: 16px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .add-button:hover {
+        background-color: #78ad72;
+        color: white;
+    }
+
+    .add-button i {
+        margin-right: 5px;
+    }
+
+    /* ATIVIDADES CADASTRADAS */
+
+    .activity-item {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        background-color: #e3f4eb;
+        padding: 15px 20px;
+        border-radius: 20px;
+        margin-bottom: 12px;
+        gap: 15px;
+    }
+
+    .activity-name {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        color: #263d2c;
+        font-size: 16px;
+        min-width: 0;
+        overflow-wrap: anywhere;
+    }
+
+    .activity-name i {
+        color: #547e50;
+        font-size: 20px;
+    }
+
+    /* BOTÃO EXCLUIR */
+
+    .delete-button {
+        background-color: transparent;
+        border: none;
+        color: #b93838;
+        font-size: 18px;
+        padding: 8px;
+        cursor: pointer;
+        transition: 0.2s;
+    }
+
+    .delete-button:hover {
+        background-color: #f5dddd;
+        border-radius: 8px;
+        color: #a51d1d;
+    }
+
+    /* MENSAGEM SEM ATIVIDADES */
+
+    .empty-message {
+        color: #437d65;
+        font-size: 15px;
+        padding: 10px 0;
+    }
+
+    /* RESPONSIVIDADE */
+
+    @media (max-width: 900px) {
+
+        .welcome-banner {
+            width: 100%;
+        }
+
+        .welcome-banner h1 {
+            font-size: 45px;
+        }
+
+        .calendar-day {
+            min-height: 60px;
+        }
+
+        .calendar-days {
+            gap: 6px;
+        }
+
+    }
+
+    @media (max-width: 500px) {
+
+        .sidebar {
+            width: 60px;
+        }
+
+        .sidebar-logo span {
+            font-size: 9px;
+        }
+
+        .nav-item {
+            font-size: 23px;
+        }
+
+        .main-content {
+            margin-left: 60px;
+            width: calc(100% - 60px);
+            padding: 15px;
+        }
+
+        .search-box {
+            padding: 10px;
+            gap: 8px;
+        }
+
+        .search-box input {
+            font-size: 15px;
+        }
+
+        .search-box i {
+            font-size: 18px;
+        }
+
+        .user-profile {
+            font-size: 28px;
+        }
+
+        .welcome-banner {
+            padding: 15px;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .welcome-banner h1 {
+            font-size: 38px;
+        }
+
+        .welcome-badge {
+            font-size: 12px;
+            padding: 8px;
+        }
+
+        .calendar-container {
+            padding: 12px;
+            border-radius: 20px;
+        }
+
+        .calendar-header h2 {
+            font-size: 16px;
+        }
+
+        .calendar-header button {
+            width: 30px;
+            height: 30px;
+            font-size: 13px;
+        }
+
+        .calendar-days {
+            gap: 4px;
+        }
+
+        .calendar-day {
+            min-height: 40px;
+            font-size: 13px;
+            border-radius: 7px;
+        }
+
+        .week-days {
+            font-size: 9px;
+        }
+
+        .event-dot {
+            width: 5px;
+            height: 5px;
+            bottom: 4px;
+        }
+
+        .activities-container h3 {
+            font-size: 16px;
+        }
+
+        .activity-item {
+            padding: 12px;
+        }
+
+        .activity-name {
+            font-size: 13px;
+        }
+
+    }
+
+</style>
+
+
 </head>
+
 <body>
 
     <div class="app-container">
-        
+
         <!-- BARRA LATERAL -->
+
         <aside class="sidebar">
+
             <div class="sidebar-logo">
                 <div class="logo-box">
                     <i class="fa-solid fa-graduation-cap"></i>
                     <span>IFAgendas</span>
                 </div>
             </div>
-            
+
             <nav class="sidebar-nav">
-                <a href="inicio.html" class="nav-item"><i class="fa-solid fa-house"></i></a>
-                <a href="calendario.html" class="nav-item active"><i class="fa-solid fa-calendar-days"></i></a>
-                <a href="#" class="nav-item"><i class="fa-solid fa-book-open"></i></a>
-                <a href="#" class="nav-item"><i class="fa-solid fa-clipboard-list"></i></a>
-                <a href="#" class="nav-item"><i class="fa-solid fa-chart-line"></i></a>
-                <a href="#" class="nav-item"><i class="fa-solid fa-bullseye"></i></a>
+
+                <a href="inicio.html" class="nav-item">
+                    <i class="fa-solid fa-house"></i>
+                </a>
+
+                <a href="calendario.html" class="nav-item active">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </a>
+
+                <a href="estudos-recentes.html" class="nav-item">
+                    <i class="fa-solid fa-book-open"></i>
+                </a>
+
+                <a href="tarefas.html" class="nav-item">
+                    <i class="fa-solid fa-clipboard-list"></i>
+                </a>
+
+                <a href="evolução.html" class="nav-item">
+                    <i class="fa-solid fa-chart-line"></i>
+                </a>
+
+                <a href="metas.html" class="nav-item">
+                    <i class="fa-solid fa-bullseye"></i>
+                </a>
+
             </nav>
 
             <div class="sidebar-footer">
-                <a href="#" class="nav-item"><i class="fa-solid fa-gear"></i></a>
+
+                <a href="configurações.html" class="nav-item">
+                    <i class="fa-solid fa-gear"></i>
+                </a>
+
             </div>
+
         </aside>
 
         <!-- CONTEÚDO PRINCIPAL -->
+
         <main class="main-content">
-            
+
             <!-- CABEÇALHO -->
+
             <header class="top-header">
+
                 <div class="search-box">
                     <i class="fa-solid fa-magnifying-glass"></i>
                     <input type="text" placeholder="Calendário">
                 </div>
+
                 <div class="user-profile">
                     <i class="fa-solid fa-circle-user"></i>
                 </div>
+
             </header>
 
-            <!-- BANNER DE TÍTULO -->
+            <!-- BANNER -->
+
             <section class="welcome-banner">
+
                 <div class="welcome-text">
                     <h1>Calendário</h1>
                 </div>
+
                 <div class="welcome-badge">
-                    <span>Fique atento as suas atividades</span>
+                    <span>Fique atento às suas atividades</span>
                 </div>
+
             </section>
 
-            <!-- TABELA DO CALENDÁRIO -->
+            <!-- CALENDÁRIO -->
+
             <div class="calendar-container">
-                <table class="calendar-table">
-                    <thead>
-                        <tr>
-                            <th>DOM</th>
-                            <th>SEG</th>
-                            <th>TER</th>
-                            <th>QUA</th>
-                            <th>QUI</th>
-                            <th>SEX</th>
-                            <th>SÁB</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td class="other-month"></td>
-                            <td class="other-month"></td>
-                            <td class="other-month"></td>
-                            <td class="other-month"></td>
-                            <td class="other-month"></td>
-                            <td>
-                                <span class="day-number">1</span>
-                                <div class="event-tag"><span class="dot red"></span> Prova Inglês</div>
-                            </td>
-                            <td><span class="day-number">2</span></td>
-                        </tr>
-                        <tr>
-                            <td><span class="day-number">3</span></td>
-                            <td><span class="day-number">4</span></td>
-                            <td><span class="day-number">5</span></td>
-                            <td><span class="day-number">6</span></td>
-                            <td><span class="day-number">7</span></td>
-                            <td><span class="day-number">8</span></td>
-                            <td><span class="day-number">9</span></td>
-                        </tr>
-                        <tr>
-                            <td><span class="day-number">10</span></td>
-                            <td><span class="day-number">11</span></td>
-                            <td><span class="day-number">12</span></td>
-                            <td><span class="day-number">13</span></td>
-                            <td><span class="day-number">14</span></td>
-                            <td><span class="day-number">15</span></td>
-                            <td>
-                                <span class="day-number">16</span>
-                                <div class="event-tag"><span class="dot purple"></span> Português</div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <span class="day-number">17</span>
-                                <div class="event-tag"><span class="dot orange"></span> História</div>
-                            </td>
-                            <td>
-                                <span class="day-number">18</span>
-                                <div class="event-tag"><span class="dot blue"></span> Matemática</div>
-                            </td>
-                            <td><span class="day-number">19</span></td>
-                            <td><span class="day-number">20</span></td>
-                            <td><span class="day-number">21</span></td>
-                            <td><span class="day-number">22</span></td>
-                            <td><span class="day-number">23</span></td>
-                        </tr>
-                        <tr>
-                            <td><span class="day-number">24</span></td>
-                            <td><span class="day-number">25</span></td>
-                            <td><span class="day-number">26</span></td>
-                            <td><span class="day-number">27</span></td>
-                            <td><span class="day-number">28</span></td>
-                            <td><span class="day-number">29</span></td>
-                            <td><span class="day-number">30</span></td>
-                        </tr>
-                        <tr>
-                            <td><span class="day-number">31</span></td>
-                            <td class="other-month"></td>
-                            <td class="other-month"></td>
-                            <td class="other-month"></td>
-                            <td class="other-month"></td>
-                            <td class="other-month"></td>
-                            <td class="other-month"></td>
-                        </tr>
-                    </tbody>
-                </table>
+
+                <!-- CONTROLE DOS MESES -->
+
+                <div class="calendar-header">
+
+                    <button type="button" onclick="mudarMes(-1)" aria-label="Mês anterior">
+                        <i class="fa-solid fa-chevron-left"></i>
+                    </button>
+
+                    <h2 id="mes-ano"></h2>
+
+                    <button type="button" onclick="mudarMes(1)" aria-label="Próximo mês">
+                        <i class="fa-solid fa-chevron-right"></i>
+                    </button>
+
+                </div>
+
+                <!-- DIAS DA SEMANA -->
+
+                <div class="week-days">
+                    <span>DOM</span>
+                    <span>SEG</span>
+                    <span>TER</span>
+                    <span>QUA</span>
+                    <span>QUI</span>
+                    <span>SEX</span>
+                    <span>SÁB</span>
+                </div>
+
+                <!-- DIAS GERADOS AUTOMATICAMENTE -->
+
+                <div class="calendar-days" id="calendar-days"></div>
+
+                <!-- ATIVIDADES -->
+
+                <div class="activities-container">
+
+                    <h3 id="data-selecionada"></h3>
+
+                    <div id="lista-atividades"></div>
+
+                    <form class="activity-form" onsubmit="adicionarAtividade(event)">
+
+                        <input
+                            type="text"
+                            id="atividade"
+                            placeholder="Ex.: Prova de matemática"
+                            required
+                        >
+
+                        <button type="submit" class="add-button">
+                            <i class="fa-solid fa-plus"></i>
+                            Adicionar atividade
+                        </button>
+
+                    </form>
+
+                </div>
+
             </div>
 
         </main>
 
     </div>
 
+    <!-- FUNCIONAMENTO DO CALENDÁRIO -->
+
+    <script>
+
+        const hoje = new Date();
+
+        let mesAtual = hoje.getMonth();
+        let anoAtual = hoje.getFullYear();
+        let diaSelecionado = hoje.getDate();
+
+        const meses = [
+            "Janeiro",
+            "Fevereiro",
+            "Março",
+            "Abril",
+            "Maio",
+            "Junho",
+            "Julho",
+            "Agosto",
+            "Setembro",
+            "Outubro",
+            "Novembro",
+            "Dezembro"
+        ];
+
+        // Recupera as atividades salvas no navegador
+
+        let atividades = JSON.parse(
+            localStorage.getItem("ifagendas_atividades")
+        ) || {};
+
+        // Identifica uma data específica
+
+        function chaveData(dia) {
+
+            return `${anoAtual}-${mesAtual + 1}-${dia}`;
+
+        }
+
+        // Cria o calendário
+
+        function gerarCalendario() {
+
+            const calendario = document.getElementById("calendar-days");
+
+            calendario.innerHTML = "";
+
+            document.getElementById("mes-ano").textContent =
+                meses[mesAtual] + " de " + anoAtual;
+
+            const primeiroDia = new Date(
+                anoAtual,
+                mesAtual,
+                1
+            ).getDay();
+
+            const totalDias = new Date(
+                anoAtual,
+                mesAtual + 1,
+                0
+            ).getDate();
+
+            // Espaços vazios antes do primeiro dia
+
+            for (let i = 0; i < primeiroDia; i++) {
+
+                const vazio = document.createElement("div");
+
+                vazio.className = "calendar-day empty";
+
+                calendario.appendChild(vazio);
+
+            }
+
+            // Criação dos dias do mês
+
+            for (let dia = 1; dia <= totalDias; dia++) {
+
+                const elemento = document.createElement("button");
+
+                elemento.type = "button";
+
+                elemento.className = "calendar-day";
+
+                elemento.textContent = dia;
+
+                elemento.setAttribute(
+                    "aria-label",
+                    dia + " de " + meses[mesAtual] + " de " + anoAtual
+                );
+
+                // Destaca o dia atual
+
+                if (
+                    dia === hoje.getDate() &&
+                    mesAtual === hoje.getMonth() &&
+                    anoAtual === hoje.getFullYear()
+                ) {
+
+                    elemento.classList.add("today");
+
+                }
+
+                // Destaca o dia selecionado
+
+                if (dia === diaSelecionado) {
+
+                    elemento.classList.add("selected");
+
+                }
+
+                // Mostra uma bolinha nos dias com atividades
+
+                if (
+                    atividades[chaveData(dia)] &&
+                    atividades[chaveData(dia)].length > 0
+                ) {
+
+                    const bolinha = document.createElement("span");
+
+                    bolinha.className = "event-dot";
+
+                    elemento.appendChild(bolinha);
+
+                }
+
+                // Seleciona o dia clicado
+
+                elemento.onclick = function () {
+
+                    diaSelecionado = dia;
+
+                    gerarCalendario();
+
+                };
+
+                calendario.appendChild(elemento);
+
+            }
+
+            mostrarAtividades();
+
+        }
+
+        // Avança ou volta os meses
+
+        function mudarMes(valor) {
+
+            mesAtual += valor;
+
+            if (mesAtual > 11) {
+
+                mesAtual = 0;
+                anoAtual++;
+
+            }
+
+            if (mesAtual < 0) {
+
+                mesAtual = 11;
+                anoAtual--;
+
+            }
+
+            diaSelecionado = 1;
+
+            gerarCalendario();
+
+        }
+
+        // Mostra as atividades do dia selecionado
+
+        function mostrarAtividades() {
+
+            const lista = document.getElementById("lista-atividades");
+
+            lista.innerHTML = "";
+
+            document.getElementById("data-selecionada").textContent =
+                "Atividades — " +
+                diaSelecionado +
+                " de " +
+                meses[mesAtual];
+
+            const chave = chaveData(diaSelecionado);
+
+            const atividadesDoDia = atividades[chave] || [];
+
+            if (atividadesDoDia.length === 0) {
+
+                lista.innerHTML =
+                    '<p class="empty-message">Nenhuma atividade cadastrada neste dia.</p>';
+
+                return;
+
+            }
+
+            atividadesDoDia.forEach(function (atividade, indice) {
+
+                const item = document.createElement("div");
+
+                item.className = "activity-item";
+
+                const nome = document.createElement("div");
+
+                nome.className = "activity-name";
+
+                const icone = document.createElement("i");
+
+                icone.className = "fa-solid fa-book-open";
+
+                const texto = document.createElement("span");
+
+                texto.textContent = atividade;
+
+                nome.appendChild(icone);
+                nome.appendChild(texto);
+
+                const excluir = document.createElement("button");
+
+                excluir.type = "button";
+
+                excluir.className = "delete-button";
+
+                excluir.setAttribute("aria-label", "Excluir atividade");
+
+                excluir.innerHTML =
+                    '<i class="fa-solid fa-trash"></i>';
+
+                excluir.onclick = function () {
+
+                    excluirAtividade(indice);
+
+                };
+
+                item.appendChild(nome);
+                item.appendChild(excluir);
+
+                lista.appendChild(item);
+
+            });
+
+        }
+
+        // Adiciona uma atividade
+
+        function adicionarAtividade(event) {
+
+            event.preventDefault();
+
+            const campo = document.getElementById("atividade");
+
+            const texto = campo.value.trim();
+
+            if (texto === "") {
+
+                return;
+
+            }
+
+            const chave = chaveData(diaSelecionado);
+
+            if (!atividades[chave]) {
+
+                atividades[chave] = [];
+
+            }
+
+            atividades[chave].push(texto);
+
+            salvarAtividades();
+
+            campo.value = "";
+
+            gerarCalendario();
+
+        }
+
+        // Exclui uma atividade
+
+        function excluirAtividade(indice) {
+
+            const chave = chaveData(diaSelecionado);
+
+            atividades[chave].splice(indice, 1);
+
+            if (atividades[chave].length === 0) {
+
+                delete atividades[chave];
+
+            }
+
+            salvarAtividades();
+
+            gerarCalendario();
+
+        }
+
+        // Salva as atividades no navegador
+
+        function salvarAtividades() {
+
+            localStorage.setItem(
+                "ifagendas_atividades",
+                JSON.stringify(atividades)
+            );
+
+        }
+
+        // Inicia o calendário automaticamente
+
+        gerarCalendario();
+
+    </script>
+
 </body>
+
 </html>

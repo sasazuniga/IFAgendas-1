@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ifAgendas - Estudos Recentes</title>
+
+    <link rel="stylesheet" href="css/estudos recentes.css">
+   
+
+    <!-- Ícones FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+
+        <!-- BARRA LATERAL -->
+        <aside class="sidebar">
+
+            <div class="sidebar-logo">
+                <div class="logo-box">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                    <span>IFAgendas</span>
+                </div>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="inicio.html" class="nav-item">
+                    <i class="fa-solid fa-house"></i>
+                </a>
+
+                <a href="calendario.html" class="nav-item">
+                    <i class="fa-solid fa-calendar-days"></i>
+                </a>
+
+                <a href="estudos-recentes.html" class="nav-item active">
+                    <i class="fa-solid fa-book-open"></i>
+                </a>
+
+                <a href="tarefas.html" class="nav-item">
+                    <i class="fa-solid fa-clipboard-list"></i>
+                </a>
+
+                <a href="evolução.html" class="nav-item">
+                    <i class="fa-solid fa-chart-line"></i>
+                </a>
+
+                <a href="metas.html" class="nav-item">
+                    <i class="fa-solid fa-bullseye"></i>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="configurações.html" class="nav-item">
+                    <i class="fa-solid fa-gear"></i>
+                </a>
+            </div>
+
+        </aside>
+
+
+        <!-- CONTEÚDO PRINCIPAL -->
+        <main class="main-content">
+
+            <!-- CABEÇALHO -->
+            <header class="top-header">
+
+                <div class="search-box">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="Estudos recentes">
+                </div>
+
+                <div class="user-profile">
+                    <i class="fa-solid fa-circle-user"></i>
+                </div>
+
+            </header>
+
+
+            <!-- BANNER DE TÍTULO -->
+            <section class="welcome-banner">
+
+                <div class="welcome-text">
+                    <h1>Estudos recentes</h1>
+                </div>
+
+                <div class="welcome-badge">
+                    <span>Foque nas suas atividades neste tempo</span>
+                </div>
+
+            </section>
+
+
+            <!-- RESUMO DOS ESTUDOS -->
+            <section class="study-summary">
+
+                <div class="summary-item subjects">
+
+                    <div class="summary-icon">
+                        <i class="fa-solid fa-book"></i>
+                    </div>
+
+                    <div class="summary-info">
+                        <p>Matérias estudadas:</p>
+                        <h2>05</h2>
+                    </div>
+
+                </div>
+
+
+                <div class="summary-item">
+
+                    <div class="summary-icon">
+                        <i class="fa-solid fa-clock"></i>
+                    </div>
+
+                    <div class="summary-info">
+                        <p>Tempo total de estudo:</p>
+                        <h2>5h 45min</h2>
+                    </div>
+
+                </div>
+
+
+                <div class="summary-item">
+
+                    <div class="summary-icon">
+                        <i class="fa-solid fa-calendar-check"></i>
+                    </div>
+
+                    <div class="summary-info">
+                        <p>Último registro:</p>
+                        <h2>08 nov.</h2>
+                    </div>
+
+                </div>
+
+            </section>
+
+
+            <!-- FILTROS DE MATÉRIAS -->
+            <section class="study-filters">
+
+                <button class="filter-btn active" onclick="filtrarEstudos('Todos', this)">
+                    Todos
+                </button>
+
+                <button class="filter-btn" onclick="filtrarEstudos('Matemática', this)">
+                    Matemática
+                </button>
+
+                <button class="filter-btn" onclick="filtrarEstudos('História', this)">
+                    História
+                </button>
+
+            </section>
+
+
+            <!-- LISTA DE ESTUDOS -->
+            <section class="recent-studies">
+
+
+                <!-- ESTUDO DE MATEMÁTICA -->
+                <div class="study-card" data-materia="Matemática">
+
+                    <div class="study-left">
+
+                        <div class="study-subject-icon">
+                            <i class="fa-solid fa-ruler-combined"></i>
+                        </div>
+
+                        <div class="study-details">
+
+                            <h3>Matemática</h3>
+
+                            <div class="study-information">
+                                <span>
+                                    <i class="fa-regular fa-calendar"></i>
+                                    08/11/2026
+                                </span>
+
+                                <span>
+                                    <i class="fa-regular fa-clock"></i>
+                                    17:00
+                                </span>
+                            </div>
+
+                            <span class="study-tag">Revisão</span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="study-time">
+                        <p>Tempo dedicado:</p>
+                        <strong>1h 30min</strong>
+                    </div>
+
+                </div>
+
+
+                <!-- ESTUDO DE HISTÓRIA -->
+                <div class="study-card" data-materia="História">
+
+                    <div class="study-left">
+
+                        <div class="study-subject-icon">
+                            <i class="fa-solid fa-landmark"></i>
+                        </div>
+
+                        <div class="study-details">
+
+                            <h3>História</h3>
+
+                            <div class="study-information">
+                                <span>
+                                    <i class="fa-regular fa-calendar"></i>
+                                    05/11/2026
+                                </span>
+
+                                <span>
+                                    <i class="fa-regular fa-clock"></i>
+                                    15:00
+                                </span>
+                            </div>
+
+                            <span class="study-tag">Leitura</span>
+
+                        </div>
+
+                    </div>
+
+                    <div class="study-time">
+                        <p>Tempo dedicado:</p>
+                        <strong>2h 30min</strong>
+                    </div>
+
+                </div>
+
+
+            </section>
+
+        </main>
+
+    </div>
+
+
+    <!-- FILTRO FUNCIONAL -->
+    <script>
+
+        function filtrarEstudos(materia, botao) {
+
+            const cards = document.querySelectorAll(".study-card");
+            const botoes = document.querySelectorAll(".filter-btn");
+
+            // Atualiza botão selecionado
+            botoes.forEach(btn => {
+                btn.classList.remove("active");
+            });
+
+            botao.classList.add("active");
+
+            // Filtra os estudos
+            cards.forEach(card => {
+
+                if (
+                    materia === "Todos" ||
+                    card.dataset.materia === materia
+                ) {
+                    card.style.display = "flex";
+                } else {
+                    card.style.display = "none";
+                }
+
+            });
+
+        }
+
+    </script>
+
+</body>
+</html>

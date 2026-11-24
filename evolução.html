@@ -1,0 +1,600 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>IFAgendas - Evolução</title>
+
+    <!-- ÍCONES -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- FONTES -->
+   
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #e3f4eb;
+            color: #111;
+        }
+
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* MENU LATERAL */
+
+        .sidebar {
+            width: 80px;
+            background-color: #a9cda7;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: fixed;
+            height: 100vh;
+            border-right: 2px solid #789b76;
+        }
+
+        .sidebar-logo {
+            width: 100%;
+            padding: 20px 5px;
+            text-align: center;
+            background-color: #e3f4eb;
+        }
+
+        .sidebar-logo i {
+            font-size: 30px;
+            color: #397b43;
+        }
+
+        .sidebar-logo span {
+            display: block;
+            font-size: 11px;
+            font-weight: bold;
+            margin-top: 8px;
+        }
+
+        .sidebar-nav {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            min-height: 55px;
+            color: #263d2c;
+            font-size: 28px;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .nav-item:hover {
+            background-color: #cce8cc;
+        }
+
+        .nav-item.active {
+            background-color: #e3f4eb;
+            color: #507b59;
+        }
+
+        .sidebar-footer {
+            width: 100%;
+            padding: 12px 0;
+        }
+
+        /* CONTEÚDO PRINCIPAL */
+
+        .main-content {
+            margin-left: 80px;
+            padding: 20px 30px;
+            width: calc(100% - 80px);
+        }
+
+        /* CABEÇALHO */
+
+        .top-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 35px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            border: 1.5px solid #263d2c;
+            border-radius: 35px;
+            padding: 12px 20px;
+            width: 340px;
+            max-width: 100%;
+            gap: 15px;
+        }
+
+        .search-box i {
+            font-size: 24px;
+        }
+
+        .search-box input {
+            background: transparent;
+            border: none;
+            border-left: 1px solid #263d2c;
+            outline: none;
+            padding-left: 12px;
+            font-size: 21px;
+            width: 100%;
+            color: #111;
+        }
+
+        .search-box input::placeholder {
+            color: #111;
+        }
+
+        /* BANNER */
+
+        .welcome-banner {
+            background-color: #cceecb;
+            padding: 25px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            width: 65%;
+            min-height: 138px;
+            margin-bottom: 8px;
+        }
+
+        .welcome-banner h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 65px;
+    color: #111;
+}
+
+        .welcome-badge {
+            background-color: #f5e1ad;
+            padding: 20px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            transform: rotate(-8deg);
+            border: 5px dashed #cceecb;
+        }
+
+        .description {
+            color: #437d65;
+            font-size: 16px;
+            margin-bottom: 12px;
+        }
+
+        /* CARTÕES DE RESUMO */
+
+        .summary-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+            margin-bottom: 15px;
+        }
+
+        .summary-card {
+            background-color: #fff;
+            border-radius: 35px;
+            padding: 20px 25px;
+        }
+
+        .summary-card p {
+            color: #437d65;
+            font-size: 16px;
+            margin-bottom: 3px;
+        }
+
+        .summary-card h2 {
+            font-size: 28px;
+            font-weight: 700;
+        }
+
+        .completed {
+            color: #547e50;
+        }
+
+        .pending {
+            color: #df2424;
+        }
+
+        /* MATÉRIAS */
+
+        .subjects-container {
+            display: flex;
+            flex-direction: column;
+            gap: 17px;
+        }
+
+        .subject-card {
+            background-color: #fff;
+            border-radius: 35px;
+            padding: 15px 23px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            min-height: 92px;
+        }
+
+        .subject-icon {
+            width: 66px;
+            height: 66px;
+            flex-shrink: 0;
+            background-color: #cceecb;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+        }
+
+        .subject-info {
+            flex: 1;
+        }
+
+        .subject-info h3 {
+            font-size: 17px;
+            margin-bottom: 6px;
+        }
+
+        .subject-info p {
+            font-size: 13px;
+            color: #437d65;
+        }
+
+        /* BARRAS DE PROGRESSO */
+
+        .progress-bar {
+            width: 100%;
+            max-width: 500px;
+            height: 9px;
+            background-color: #e3f4eb;
+            border-radius: 10px;
+            margin-top: 10px;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background-color: #78ad72;
+            border-radius: 10px;
+        }
+
+        .percentage {
+            color: #547e50;
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        /* MENSAGEM DE INCENTIVO */
+
+        .motivation {
+            background-color: #cceecb;
+            border-radius: 35px;
+            padding: 15px 25px;
+            width: 60%;
+            margin: 38px auto 0;
+            text-align: center;
+        }
+
+        .motivation h3 {
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .motivation p {
+            font-size: 16px;
+            color: #437d65;
+            line-height: 1.5;
+        }
+
+        /* RESPONSIVIDADE */
+
+        @media (max-width: 900px) {
+
+            .summary-container {
+                grid-template-columns: 1fr;
+                gap: 12px;
+            }
+
+            .welcome-banner {
+                width: 100%;
+            }
+
+            .welcome-banner h1 {
+                font-size: 45px;
+            }
+
+            .motivation {
+                width: 100%;
+            }
+
+        }
+
+        @media (max-width: 500px) {
+
+            .sidebar {
+                width: 60px;
+            }
+
+            .main-content {
+                margin-left: 60px;
+                width: calc(100% - 60px);
+                padding: 15px;
+            }
+
+            .welcome-banner {
+                padding: 15px;
+            }
+
+            .welcome-banner h1 {
+                font-size: 38px;
+            }
+
+            .welcome-badge {
+                font-size: 12px;
+                padding: 8px;
+            }
+
+            .subject-card {
+                padding: 12px;
+                gap: 8px;
+            }
+
+            .subject-icon {
+                width: 45px;
+                height: 45px;
+                font-size: 25px;
+            }
+
+            .percentage {
+                font-size: 14px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <!-- MENU LATERAL -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span>IFAgendas</span>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="inicio.html" class="nav-item" title="Início">
+                <i class="fa-solid fa-house"></i>
+            </a>
+
+            <a href="calendario.html" class="nav-item" title="Calendário">
+                <i class="fa-solid fa-calendar-days"></i>
+            </a>
+
+            <a href="estudos-recentes.html" class="nav-item" title="Estudos recentes">
+                <i class="fa-solid fa-book-open"></i>
+            </a>
+
+            <a href="tarefas.html" class="nav-item" title="Tarefas">
+                <i class="fa-solid fa-clipboard-list"></i>
+            </a>
+
+            <a href="evolucao.html" class="nav-item active" title="Evolução">
+                <i class="fa-solid fa-chart-line"></i>
+            </a>
+
+            <a href="metas.html" class="nav-item" title="Metas">
+                <i class="fa-solid fa-bullseye"></i>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+
+            <a href="configurações.html" class="nav-item" title="Configurações">
+                <i class="fa-solid fa-gear"></i>
+            </a>
+
+        </div>
+
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+
+    <main class="main-content">
+
+        <!-- CABEÇALHO -->
+
+        <header class="top-header">
+
+            <div class="search-box">
+
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    id="pesquisa"
+                    placeholder="Evolução"
+                    aria-label="Pesquisar matérias">
+
+            </div>
+
+        </header>
+
+        <!-- BANNER -->
+
+        <section class="welcome-banner">
+
+            <h1>Evolução</h1>
+
+            <div class="welcome-badge">
+                Continue<br>assim!
+            </div>
+
+        </section>
+
+        <p class="description">
+            Acompanhe seu desempenho e veja como está seu progresso nos estudos.
+        </p>
+
+        <!-- RESUMO DO DESEMPENHO -->
+
+        <section class="summary-container">
+
+            <div class="summary-card">
+
+                <p>Matérias acompanhadas:</p>
+
+                <h2>05 matérias</h2>
+
+            </div>
+
+            <div class="summary-card">
+
+                <p>Atividades concluídas:</p>
+
+                <h2 class="completed">18 atividades</h2>
+
+            </div>
+
+            <div class="summary-card">
+
+                <p>Atividades pendentes:</p>
+
+                <h2 class="pending">07 atividades</h2>
+
+            </div>
+
+        </section>
+
+        <!-- EVOLUÇÃO POR MATÉRIA -->
+
+        <section class="subjects-container">
+
+            <!-- MATEMÁTICA -->
+
+            <div class="subject-card">
+
+                <div class="subject-icon">
+                    📐
+                </div>
+
+                <div class="subject-info">
+
+                    <h3>Matemática:</h3>
+
+                    <p>8 de 10 atividades concluídas</p>
+
+                    <div class="progress-bar">
+
+                        <div class="progress-fill"
+                             style="width: 80%;">
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <span class="percentage">80%</span>
+
+            </div>
+
+            <!-- HISTÓRIA -->
+
+            <div class="subject-card">
+
+                <div class="subject-icon">
+                    🏛️
+                </div>
+
+                <div class="subject-info">
+
+                    <h3>História:</h3>
+
+                    <p>6 de 8 atividades concluídas</p>
+
+                    <div class="progress-bar">
+
+                        <div class="progress-fill"
+                             style="width: 75%;">
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <span class="percentage">75%</span>
+
+            </div>
+
+        </section>
+
+        <!-- MENSAGEM DE INCENTIVO -->
+
+        <section class="motivation">
+
+            <h3>Continue assim!</h3>
+
+            <p>
+                Mantenha seus estudos em dia e conclua as atividades
+                pendentes para acompanhar sua evolução.
+            </p>
+
+        </section>
+
+    </main>
+
+</div>
+
+<!-- PESQUISA DE MATÉRIAS -->
+
+<script>
+
+    const pesquisa = document.getElementById("pesquisa");
+
+    pesquisa.addEventListener("input", function() {
+
+        const valor = pesquisa.value.toLowerCase();
+
+        document.querySelectorAll(".subject-card").forEach(function(card) {
+
+            const materia = card.querySelector("h3")
+                .textContent.toLowerCase();
+
+            card.style.display = materia.includes(valor)
+                ? "flex"
+                : "none";
+
+        });
+
+    });
+
+</script>
+
+</body>
+</html>

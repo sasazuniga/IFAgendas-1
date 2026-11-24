@@ -1,0 +1,559 @@
+
+/* CONFIGURAÇÕES GERAIS */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Open Sans', sans-serif;
+    background-color: #e3f4eb;
+    color: #111;
+    min-height: 100vh;
+}
+
+/* CONTAINER PRINCIPAL */
+
+.app-container {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* BARRA LATERAL */
+
+.sidebar {
+    width: 80px;
+    background-color: #a9cda7;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: fixed;
+    height: 100vh;
+    border-right: 2px solid #789b76;
+}
+
+/* LOGO */
+
+.sidebar-logo {
+    width: 100%;
+    padding: 20px 5px;
+    text-align: center;
+    background-color: #e3f4eb;
+}
+
+.sidebar-logo .logo-box {
+    text-align: center;
+}
+
+.sidebar-logo i {
+    font-size: 30px;
+    color: #397b43;
+}
+
+.sidebar-logo span {
+    display: block;
+    font-size: 11px;
+    font-weight: bold;
+    margin-top: 8px;
+}
+
+/* MENU LATERAL */
+
+.sidebar-nav {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex: 1;
+    min-height: 55px;
+    color: #263d2c;
+    font-size: 28px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.nav-item:hover {
+    background-color: #cce8cc;
+}
+
+.nav-item.active {
+    background-color: #e3f4eb;
+    color: #507b59;
+}
+
+.sidebar-footer {
+    width: 100%;
+    padding: 12px 0;
+}
+
+/* CONTEÚDO PRINCIPAL */
+
+.main-content {
+    margin-left: 80px;
+    padding: 20px 30px;
+    width: calc(100% - 80px);
+    min-width: 0;
+}
+
+/* CABEÇALHO */
+
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 35px;
+    gap: 15px;
+}
+
+.search-box {
+    display: flex;
+    align-items: center;
+    border: 1.5px solid #263d2c;
+    border-radius: 35px;
+    padding: 12px 20px;
+    width: 340px;
+    max-width: 100%;
+    min-width: 0;
+    gap: 15px;
+}
+
+.search-box i {
+    font-size: 24px;
+    color: #263d2c;
+}
+
+.search-box input {
+    background: transparent;
+    border: none;
+    border-left: 1px solid #263d2c;
+    outline: none;
+    padding-left: 12px;
+    font-size: 21px;
+    width: 100%;
+    min-width: 0;
+    color: #111;
+}
+
+.search-box input::placeholder {
+    color: #111;
+}
+
+.user-profile i {
+    font-size: 35px;
+    color: #263d2c;
+}
+
+/* BANNER DE TÍTULO */
+
+.welcome-banner {
+    background-color: #cceecb;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 65%;
+    min-height: 138px;
+    margin-bottom: 30px;
+    gap: 15px;
+}
+
+.welcome-text h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 65px;
+    color: #111;
+}
+
+.welcome-text p {
+    font-size: 16px;
+    color: #437d65;
+}
+
+/* AVISO AMARELO */
+
+.welcome-badge {
+    background-color: #f5e1ad;
+    padding: 20px;
+    text-align: center;
+    font-size: 18px;
+    font-weight: bold;
+    transform: rotate(-8deg);
+    border: 5px dashed #cceecb;
+    color: #111;
+}
+
+/* RESUMO DOS ESTUDOS */
+
+.study-summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 25px;
+    margin-bottom: 30px;
+}
+
+.summary-item {
+    background-color: #fff;
+    border-radius: 35px;
+    padding: 20px 25px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-height: 100px;
+}
+
+/* ÍCONES DO RESUMO */
+
+.summary-icon {
+    width: 60px;
+    height: 60px;
+    background-color: #cceecb;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 30px;
+    color: #547e50;
+    flex-shrink: 0;
+}
+
+.summary-info {
+    min-width: 0;
+}
+
+.summary-info p {
+    font-size: 15px;
+    color: #437d65;
+    margin-bottom: 5px;
+}
+
+.summary-info h2 {
+    font-size: 28px;
+    font-weight: bold;
+    color: #263d2c;
+}
+
+/* FILTROS */
+
+.study-filters {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.filter-btn {
+    border: none;
+    background-color: #fff;
+    color: #437d65;
+    padding: 10px 22px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: inherit;
+    font-weight: 600;
+    transition: 0.2s;
+}
+
+.filter-btn:hover {
+    background-color: #cceecb;
+    color: #263d2c;
+}
+
+.filter-btn.active {
+    background-color: #a9cda7;
+    color: #263d2c;
+}
+
+/* LISTA DE ESTUDOS */
+
+.recent-studies {
+    display: flex;
+    flex-direction: column;
+    gap: 17px;
+}
+
+/* CARTÃO DE ESTUDO */
+
+.study-card {
+    background-color: #fff;
+    border-radius: 35px;
+    padding: 20px 25px;
+    min-height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+    transition: 0.2s;
+}
+
+.study-card:hover {
+    background-color: #f8fcf9;
+    box-shadow: 0 3px 10px rgba(50, 80, 55, 0.08);
+}
+
+/* LADO ESQUERDO DO CARTÃO */
+
+.study-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    min-width: 0;
+}
+
+/* ÍCONE DA MATÉRIA */
+
+.study-subject-icon {
+    width: 66px;
+    height: 66px;
+    background-color: #cceecb;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 35px;
+    color: #547e50;
+    flex-shrink: 0;
+}
+
+/* INFORMAÇÕES DA MATÉRIA */
+
+.study-details {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}
+
+.study-details h3 {
+    font-size: 17px;
+    font-weight: bold;
+    color: #263d2c;
+    margin-bottom: 8px;
+}
+
+/* DATA E HORÁRIO */
+
+.study-information {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    font-size: 13px;
+    color: #437d65;
+    margin-bottom: 8px;
+}
+
+.study-information span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.study-information i {
+    color: #547e50;
+    font-size: 14px;
+}
+
+/* ETIQUETA */
+
+.study-tag {
+    display: inline-block;
+    background-color: #cceecb;
+    color: #437d65;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+/* TEMPO DEDICADO */
+
+.study-time {
+    text-align: right;
+    min-width: 150px;
+}
+
+.study-time p {
+    color: #437d65;
+    font-size: 14px;
+    margin-bottom: 5px;
+}
+
+.study-time strong {
+    color: #547e50;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* RESPONSIVIDADE */
+
+@media (max-width: 1100px) {
+
+    .study-summary {
+        gap: 15px;
+    }
+
+    .summary-item {
+        padding: 15px;
+    }
+
+    .summary-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 25px;
+    }
+
+    .summary-info h2 {
+        font-size: 23px;
+    }
+
+}
+
+@media (max-width: 900px) {
+
+    .welcome-banner {
+        width: 100%;
+    }
+
+    .welcome-text h1 {
+        font-size: 45px;
+    }
+
+    .study-summary {
+        grid-template-columns: 1fr;
+        gap: 12px;
+    }
+
+    .study-filters {
+        justify-content: flex-start;
+    }
+
+}
+
+@media (max-width: 600px) {
+
+    .study-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+    }
+
+    .study-time {
+        text-align: left;
+        margin-left: 81px;
+        min-width: 0;
+    }
+
+    .study-information {
+        gap: 8px;
+    }
+
+}
+
+@media (max-width: 500px) {
+
+    .sidebar {
+        width: 60px;
+    }
+
+    .sidebar-logo span {
+        font-size: 9px;
+    }
+
+    .nav-item {
+        font-size: 23px;
+    }
+
+    .main-content {
+        margin-left: 60px;
+        width: calc(100% - 60px);
+        padding: 15px;
+    }
+
+    .search-box {
+        padding: 10px;
+        gap: 8px;
+    }
+
+    .search-box input {
+        font-size: 15px;
+    }
+
+    .search-box i {
+        font-size: 18px;
+    }
+
+    .user-profile i {
+        font-size: 28px;
+    }
+
+    .welcome-banner {
+        padding: 15px;
+        flex-wrap: wrap;
+    }
+
+    .welcome-text h1 {
+        font-size: 38px;
+    }
+
+    .welcome-badge {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .summary-item {
+        padding: 15px;
+        border-radius: 25px;
+    }
+
+    .summary-info p {
+        font-size: 13px;
+    }
+
+    .summary-info h2 {
+        font-size: 22px;
+    }
+
+    .study-card {
+        padding: 15px;
+        border-radius: 25px;
+    }
+
+    .study-left {
+        gap: 10px;
+    }
+
+    .study-subject-icon {
+        width: 45px;
+        height: 45px;
+        font-size: 25px;
+    }
+
+    .study-details h3 {
+        font-size: 15px;
+    }
+
+    .study-information {
+        font-size: 11px;
+    }
+
+    .study-time {
+        margin-left: 55px;
+    }
+
+    .study-time strong {
+        font-size: 17px;
+    }
+
+    .filter-btn {
+        font-size: 12px;
+        padding: 8px 15px;
+    }
+
+}

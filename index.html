@@ -6,9 +6,317 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>ifAgendas - Login</title>
+    <title>IFAgendas - Login</title>
 
-    <link rel="stylesheet" href="css/style.css">
+    <style>
+
+        /* CONFIGURAÇÕES GERAIS */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e3f4eb;
+            color: #263d2c;
+        }
+
+        .pagina-login {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* LADO ESQUERDO */
+
+        .lado-esquerdo {
+            width: 50%;
+            background-color: #cceecb;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        .logo {
+            margin-bottom: 30px;
+        }
+
+        .ifsp {
+            width: 200px;
+            max-width: 100%;
+        }
+
+        .livros {
+            width: 420px;
+            max-width: 90%;
+        }
+
+        /* LADO DIREITO */
+
+        .lado-direito {
+            width: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+        }
+
+        /* CARTÃO DE LOGIN */
+
+        .cartao-login {
+            width: 440px;
+            max-width: 100%;
+            background-color: white;
+            padding: 40px;
+            border-radius: 35px;
+            text-align: center;
+            box-shadow: 0 8px 30px #263d2c15;
+        }
+
+        h2 {
+            font-size: 30px;
+            margin-bottom: 12px;
+            color: #263d2c;
+        }
+
+        p {
+            font-size: 15px;
+            color: #6b7e70;
+            line-height: 1.5;
+            margin-bottom: 25px;
+        }
+
+        /* FORMULÁRIOS */
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        input {
+            width: 100%;
+            padding: 15px;
+            border: 1.5px solid #a9cda7;
+            border-radius: 12px;
+            background-color: #f3f9f3;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus {
+            border-color: #397b43;
+            background-color: white;
+        }
+
+        /* BOTÕES */
+
+        button, .botao {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            border: none;
+            border-radius: 12px;
+            background-color: #547e50;
+            color: white;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        button:hover, .botao:hover {
+            background-color: #397b43;
+        }
+
+        /* SEPARADOR */
+
+        .separador {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin: 22px 0;
+        }
+
+        .separador span {
+            flex: 1;
+            height: 1px;
+            background-color: #c5d8c5;
+        }
+
+        .separador p {
+            margin: 0;
+        }
+
+        /* BOTÃO GOOGLE */
+
+        .google {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            padding: 14px;
+            border: 1.5px solid #a9cda7;
+            border-radius: 12px;
+            background-color: white;
+            color: #263d2c;
+            text-decoration: none;
+            font-size: 15px;
+            transition: 0.2s;
+        }
+
+        .google:hover {
+            background-color: #e3f4eb;
+        }
+
+        .google img {
+            width: 20px;
+        }
+
+        /* LINKS */
+
+        .esqueceu-senha {
+            display: block;
+            margin-top: 20px;
+            color: #547e50;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .criar-conta {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid #dce8dc;
+            font-size: 14px;
+            color: #6b7e70;
+        }
+
+        .criar-conta a,
+        .voltar-login {
+            color: #397b43;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* JANELAS SEM JAVASCRIPT */
+
+        .modal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background-color: rgba(38, 61, 44, 0.45);
+            backdrop-filter: blur(4px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 1000;
+        }
+
+        .modal:target {
+            display: flex;
+        }
+
+        .modal-conteudo {
+            width: 440px;
+            max-width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            background-color: white;
+            padding: 35px;
+            border-radius: 30px;
+            text-align: center;
+            position: relative;
+            box-shadow: 0 10px 40px #00000025;
+            animation: aparecer 0.3s ease;
+        }
+
+        @keyframes aparecer {
+            from {
+                opacity: 0;
+                transform: translateY(15px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* FECHAR JANELA */
+
+        .fechar {
+            position: absolute;
+            top: 12px;
+            right: 18px;
+            color: #6b7e70;
+            font-size: 28px;
+            text-decoration: none;
+        }
+
+        .fechar:hover {
+            color: #263d2c;
+            text-decoration: none;
+        }
+
+        .voltar-login {
+            display: block;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        /* AVISOS */
+
+        .aviso {
+            background-color: #e3f4eb;
+            padding: 15px;
+            border-radius: 12px;
+            font-size: 14px;
+            color: #397b43;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        /* RESPONSIVIDADE */
+
+        @media (max-width: 768px) {
+
+            .pagina-login {
+                flex-direction: column;
+            }
+
+            .lado-esquerdo,
+            .lado-direito {
+                width: 100%;
+                padding: 25px;
+            }
+
+            .ifsp {
+                width: 130px;
+            }
+
+            .livros {
+                width: 180px;
+            }
+
+            .cartao-login,
+            .modal-conteudo {
+                padding: 30px 25px;
+            }
+        }
+
+    </style>
+
 </head>
 
 <body>
@@ -16,20 +324,19 @@
     <main class="pagina-login">
 
         <!-- LADO ESQUERDO -->
+
         <section class="lado-esquerdo">
 
             <div class="logo">
-                 <img src="img/ifsp.png" alt="ifsp" class="ifsp">
-                
-
+                <img src="img/ifsp.png" alt="IFSP" class="ifsp">
             </div>
 
             <img src="img/livros.png" alt="Livros" class="livros">
 
         </section>
 
-
         <!-- LADO DIREITO -->
+
         <section class="lado-direito">
 
             <div class="cartao-login">
@@ -38,18 +345,22 @@
 
                 <p>Faça login para acessar sua agenda.</p>
 
-                <form id="formLogin">
+                <form id="formLogin" action="#avisoLogin">
 
                     <input
                         type="text"
                         id="usuario"
                         placeholder="Usuário"
+                        autocomplete="username"
+                        required
                     >
 
                     <input
                         type="password"
                         id="senha"
                         placeholder="Senha"
+                        autocomplete="current-password"
+                        required
                     >
 
                     <button type="submit">
@@ -64,15 +375,36 @@
                     <span></span>
                 </div>
 
-                <button type="button" id="entrarGoogle">
+                <!-- GOOGLE -->
+
+                <a href="#google" class="google">
+
+                    <img
+                        src="https://www.google.com/favicon.ico"
+                        alt="Google"
+                    >
+
                     Entrar com o Google
-                </button>
 
-                <button type="button" id="esqueceuSenha">
+                </a>
+
+                <!-- RECUPERAR SENHA -->
+
+                <a href="#recuperar" class="esqueceu-senha">
                     Esqueceu a sua senha?
-                </button>
+                </a>
 
-                <p id="mensagemLogin"></p>
+                <!-- CRIAR CONTA -->
+
+                <div class="criar-conta">
+
+                    Não tem uma conta?
+
+                    <a href="#cadastro">
+                        Crie sua conta
+                    </a>
+
+                </div>
 
             </div>
 
@@ -80,7 +412,220 @@
 
     </main>
 
-    <script src="js/script.js"></script>
+
+    <!-- JANELA DE CADASTRO -->
+
+    <section class="modal" id="cadastro">
+
+        <div class="modal-conteudo">
+
+            <a href="#" class="fechar" aria-label="Fechar">
+                &times;
+            </a>
+
+            <h2>Crie sua conta</h2>
+
+            <p>Cadastre-se para organizar seus estudos!</p>
+
+            <form action="#avisoCadastro">
+
+                <input
+                    type="text"
+                    placeholder="Nome completo"
+                    required
+                >
+
+                <input
+                    type="text"
+                    placeholder="Nome de usuário"
+                    required
+                >
+
+                <input
+                    type="email"
+                    placeholder="E-mail"
+                    required
+                >
+
+                <input
+                    type="password"
+                    placeholder="Crie uma senha"
+                    minlength="8"
+                    autocomplete="new-password"
+                    required
+                >
+
+                <input
+                    type="password"
+                    placeholder="Confirme sua senha"
+                    minlength="8"
+                    autocomplete="new-password"
+                    required
+                >
+
+                <button type="submit">
+                    Criar conta
+                </button>
+
+            </form>
+
+            <a href="#" class="voltar-login">
+                Já possui uma conta? Fazer login
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- JANELA DE RECUPERAÇÃO DE SENHA -->
+
+    <section class="modal" id="recuperar">
+
+        <div class="modal-conteudo">
+
+            <a href="#" class="fechar" aria-label="Fechar">
+                &times;
+            </a>
+
+            <h2>Recuperar senha</h2>
+
+            <p>
+                Informe o e-mail cadastrado na sua conta
+                para recuperar sua senha.
+            </p>
+
+            <form action="#avisoRecuperacao">
+
+                <input
+                    type="email"
+                    placeholder="Digite seu e-mail"
+                    required
+                >
+
+                <button type="submit">
+                    Recuperar senha
+                </button>
+
+            </form>
+
+            <a href="#" class="voltar-login">
+                Voltar para o login
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- JANELA DO GOOGLE -->
+
+    <section class="modal" id="google">
+
+        <div class="modal-conteudo">
+
+            <a href="#" class="fechar" aria-label="Fechar">
+                &times;
+            </a>
+
+            <img
+                src="https://www.google.com/favicon.ico"
+                alt="Google"
+                width="45"
+                style="margin-bottom: 20px;"
+            >
+
+            <h2>Entrar com o Google</h2>
+
+            <p>
+                Acesse sua agenda utilizando sua conta Google.
+            </p>
+
+            <div class="aviso">
+                A autenticação com o Google ainda precisa
+                ser integrada ao IFAgendas.
+            </div>
+
+            <a href="#" class="botao">
+                Voltar para o login
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- AVISO DE LOGIN -->
+
+    <section class="modal" id="avisoLogin">
+
+        <div class="modal-conteudo">
+
+            <a href="#" class="fechar">&times;</a>
+
+            <h2>Login</h2>
+
+            <div class="aviso">
+                A autenticação de usuários ainda precisa
+                ser conectada ao banco de dados.
+            </div>
+
+            <a href="#" class="botao">
+                Voltar
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- AVISO DE CADASTRO -->
+
+    <section class="modal" id="avisoCadastro">
+
+        <div class="modal-conteudo">
+
+            <a href="#" class="fechar">&times;</a>
+
+            <h2>Cadastro</h2>
+
+            <div class="aviso">
+                O cadastro ainda precisa ser integrado
+                ao banco de dados.
+            </div>
+
+            <a href="#cadastro" class="botao">
+                Voltar ao cadastro
+            </a>
+
+        </div>
+
+    </section>
+
+
+    <!-- AVISO DE RECUPERAÇÃO -->
+
+    <section class="modal" id="avisoRecuperacao">
+
+        <div class="modal-conteudo">
+
+            <a href="#" class="fechar">&times;</a>
+
+            <h2>Recuperação de senha</h2>
+
+            <div class="aviso">
+                O serviço de envio de e-mails ainda
+                precisa ser configurado.
+            </div>
+
+            <a href="#" class="botao">
+                Voltar para o login
+            </a>
+
+        </div>
+
+    </section>
 
 </body>
+
 </html>
