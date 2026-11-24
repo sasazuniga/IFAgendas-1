@@ -1,0 +1,1045 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>IFAgendas - Configurações</title>
+
+    <!-- ÍCONES -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- FONTES -->
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: #e3f4eb;
+            color: #111;
+        }
+
+        .app-container {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        /* MENU LATERAL */
+
+        .sidebar {
+            width: 80px;
+            background-color: #a9cda7;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: fixed;
+            height: 100vh;
+            border-right: 2px solid #789b76;
+        }
+
+        .sidebar-logo {
+            width: 100%;
+            padding: 20px 5px;
+            text-align: center;
+            background-color: #e3f4eb;
+        }
+
+        .sidebar-logo i {
+            font-size: 30px;
+            color: #397b43;
+        }
+
+        .sidebar-logo span {
+            display: block;
+            font-size: 11px;
+            font-weight: bold;
+            margin-top: 8px;
+        }
+
+        .sidebar-nav {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+        }
+
+        .nav-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            min-height: 55px;
+            color: #263d2c;
+            font-size: 28px;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .nav-item:hover {
+            background-color: #cce8cc;
+        }
+
+        .nav-item.active {
+            background-color: #e3f4eb;
+            color: #507b59;
+        }
+
+        .sidebar-footer {
+            width: 100%;
+            padding: 12px 0;
+        }
+
+        /* CONTEÚDO PRINCIPAL */
+
+        .main-content {
+            margin-left: 80px;
+            width: calc(100% - 80px);
+            min-height: 100vh;
+            padding: 40px 25px;
+
+            background: linear-gradient(
+                to right,
+                #cceecb 50%,
+                #e3f4eb 50%
+            );
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* DECORAÇÕES */
+
+        .decoracao {
+            position: absolute;
+            background-color: #a9cda7;
+            pointer-events: none;
+        }
+
+        .decoracao-superior {
+            width: 340px;
+            height: 180px;
+            top: -90px;
+            left: -80px;
+            border-radius: 40% 60% 70% 30%;
+            transform: rotate(-20deg);
+        }
+
+        .decoracao-direita {
+            width: 300px;
+            height: 220px;
+            top: -100px;
+            right: -80px;
+            border-radius: 60% 40% 30% 70%;
+            transform: rotate(20deg);
+        }
+
+        .decoracao-inferior {
+            width: 420px;
+            height: 240px;
+            bottom: -140px;
+            right: -50px;
+            border-radius: 60% 40% 0 0;
+            background-color: #a5ca93;
+            transform: rotate(-15deg);
+        }
+
+        /* CABEÇALHO */
+
+        .settings-header {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 22px;
+            margin-top: 30px;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .settings-header > i {
+            font-size: 85px;
+            color: #263d2c;
+        }
+
+        .settings-title h1 {
+            font-size: 44px;
+            font-weight: 700;
+        }
+
+        .settings-title p {
+            font-size: 20px;
+            color: #62746a;
+            margin-top: 5px;
+            text-align: center;
+        }
+
+        /* CARTÃO DE CONFIGURAÇÕES */
+
+        .settings-card {
+            width: 420px;
+            max-width: 100%;
+            background-color: #fff;
+            border-radius: 40px;
+            padding: 12px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .settings-item {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 17px 10px;
+            background-color: transparent;
+            border: none;
+            border-bottom: 1px solid #b5b5b5;
+            text-align: left;
+            font-family: inherit;
+            font-size: 20px;
+            color: #111;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .settings-item:last-child {
+            border-bottom: none;
+        }
+
+        .settings-item:hover {
+            background-color: #e3f4eb;
+            border-radius: 12px;
+        }
+
+        .settings-icon {
+            width: 35px;
+            font-size: 27px;
+            text-align: center;
+            color: #263d2c;
+        }
+
+        .settings-item span {
+            flex: 1;
+        }
+
+        .arrow {
+            font-size: 14px;
+            color: #888;
+        }
+
+        /* BOTÃO SAIR */
+
+        .logout-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 20px;
+
+            margin-top: 28px;
+            padding: 17px 30px;
+
+            background-color: #fff;
+            border: none;
+            border-radius: 25px;
+
+            font-family: inherit;
+            font-size: 22px;
+            color: #111;
+
+            cursor: pointer;
+            transition: 0.2s;
+            position: relative;
+            z-index: 1;
+        }
+
+        .logout-button:hover {
+            background-color: #ffe5e5;
+            color: #c0392b;
+        }
+
+        /* JANELA DE CONFIGURAÇÕES */
+
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background-color: rgba(0, 0, 0, 0.35);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            z-index: 100;
+        }
+
+        .modal-overlay.show {
+            display: flex;
+        }
+
+        .modal-content {
+            background-color: #fff;
+            width: 420px;
+            max-width: 100%;
+            border-radius: 25px;
+            padding: 25px;
+        }
+
+        .modal-header {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .modal-header h2 {
+            color: #397b43;
+            font-size: 23px;
+        }
+
+        .close-modal {
+            background: transparent;
+            border: none;
+            font-size: 23px;
+            cursor: pointer;
+        }
+
+        .modal-body {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            color: #444;
+            line-height: 1.6;
+        }
+
+        .modal-body label {
+            font-weight: 600;
+        }
+
+        .modal-body input[type="text"],
+        .modal-body input[type="email"],
+        .modal-body select {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #a9cda7;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 15px;
+        }
+
+        .option-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .option-row input {
+            width: 18px;
+            height: 18px;
+            accent-color: #397b43;
+        }
+
+        .save-button {
+            background-color: #547e50;
+            color: white;
+            border: none;
+            border-radius: 12px;
+            padding: 12px;
+            font-family: inherit;
+            font-size: 16px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+
+        .save-button:hover {
+            background-color: #397b43;
+        }
+
+        /* MODO ESCURO */
+
+        body.dark-mode .main-content {
+            background: #202c25;
+        }
+
+        body.dark-mode .sidebar {
+            background-color: #344b39;
+        }
+
+        body.dark-mode .sidebar-logo,
+        body.dark-mode .nav-item.active {
+            background-color: #202c25;
+        }
+
+        body.dark-mode .sidebar-logo,
+        body.dark-mode .nav-item,
+        body.dark-mode .sidebar-logo i {
+            color: #e3f4eb;
+        }
+
+        body.dark-mode .settings-card,
+        body.dark-mode .logout-button,
+        body.dark-mode .modal-content {
+            background-color: #344b39;
+            color: #fff;
+        }
+
+        body.dark-mode .settings-item,
+        body.dark-mode .settings-icon,
+        body.dark-mode .settings-title h1,
+        body.dark-mode .settings-header > i,
+        body.dark-mode .modal-body,
+        body.dark-mode .modal-header h2,
+        body.dark-mode .close-modal {
+            color: #fff;
+        }
+
+        body.dark-mode .settings-title p {
+            color: #cceecb;
+        }
+
+        body.dark-mode .settings-item:hover {
+            background-color: #45634c;
+        }
+
+        body.dark-mode .decoracao {
+            opacity: 0.15;
+        }
+
+        /* RESPONSIVIDADE */
+
+        @media (max-width: 600px) {
+
+            .sidebar {
+                width: 60px;
+            }
+
+            .main-content {
+                margin-left: 60px;
+                width: calc(100% - 60px);
+                padding: 25px 15px;
+            }
+
+            .settings-header {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+                margin-bottom: 25px;
+            }
+
+            .settings-header > i {
+                font-size: 55px;
+            }
+
+            .settings-title h1 {
+                font-size: 26px;
+            }
+
+            .settings-title p {
+                font-size: 15px;
+            }
+
+            .settings-card {
+                padding: 10px;
+                border-radius: 25px;
+            }
+
+            .settings-item {
+                font-size: 15px;
+                gap: 10px;
+                padding: 15px 5px;
+            }
+
+            .settings-icon {
+                font-size: 21px;
+                width: 25px;
+            }
+
+            .logout-button {
+                font-size: 17px;
+                padding: 15px 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <!-- MENU LATERAL -->
+
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+
+            <i class="fa-solid fa-graduation-cap"></i>
+
+            <span>IFAgendas</span>
+
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="inicio.html" class="nav-item" title="Início">
+                <i class="fa-solid fa-house"></i>
+            </a>
+
+            <a href="calendario.html" class="nav-item" title="Calendário">
+                <i class="fa-solid fa-calendar-days"></i>
+            </a>
+
+            <a href="estudos-recentes.html" class="nav-item" title="Estudos recentes">
+                <i class="fa-solid fa-book-open"></i>
+            </a>
+
+            <a href="tarefas.html" class="nav-item" title="Tarefas">
+                <i class="fa-solid fa-clipboard-list"></i>
+            </a>
+
+            <a href="evolucao.html" class="nav-item" title="Evolução">
+                <i class="fa-solid fa-chart-line"></i>
+            </a>
+
+            <a href="metas.html" class="nav-item" title="Metas">
+                <i class="fa-solid fa-bullseye"></i>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+
+            <a href="configuracoes.html" class="nav-item active" title="Configurações">
+                <i class="fa-solid fa-gear"></i>
+            </a>
+
+        </div>
+
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+
+    <main class="main-content">
+
+        <!-- DECORAÇÕES -->
+
+        <div class="decoracao decoracao-superior"></div>
+
+        <div class="decoracao decoracao-direita"></div>
+
+        <div class="decoracao decoracao-inferior"></div>
+
+        <!-- CABEÇALHO -->
+
+        <header class="settings-header">
+
+            <i class="fa-solid fa-gear"></i>
+
+            <div class="settings-title">
+
+                <h1>Configurações</h1>
+
+                <p>Ajuste suas preferências</p>
+
+            </div>
+
+        </header>
+
+        <!-- OPÇÕES DE CONFIGURAÇÃO -->
+
+        <section class="settings-card">
+
+            <!-- CONTA -->
+
+            <button class="settings-item" onclick="abrirConfiguracao('conta')">
+
+                <i class="fa-solid fa-circle-user settings-icon"></i>
+
+                <span>Conta</span>
+
+                <i class="fa-solid fa-chevron-right arrow"></i>
+
+            </button>
+
+            <!-- NOTIFICAÇÕES -->
+
+            <button class="settings-item" onclick="abrirConfiguracao('notificacoes')">
+
+                <i class="fa-solid fa-bell settings-icon"></i>
+
+                <span>Notificações</span>
+
+                <i class="fa-solid fa-chevron-right arrow"></i>
+
+            </button>
+
+            <!-- APARÊNCIA -->
+
+            <button class="settings-item" onclick="abrirConfiguracao('aparencia')">
+
+                <i class="fa-solid fa-palette settings-icon"></i>
+
+                <span>Aparência</span>
+
+                <i class="fa-solid fa-chevron-right arrow"></i>
+
+            </button>
+
+            <!-- PRIVACIDADE E SEGURANÇA -->
+
+            <button class="settings-item" onclick="abrirConfiguracao('privacidade')">
+
+                <i class="fa-solid fa-lock settings-icon"></i>
+
+                <span>Privacidade e Segurança</span>
+
+                <i class="fa-solid fa-chevron-right arrow"></i>
+
+            </button>
+
+            <!-- CONEXÕES -->
+
+            <button class="settings-item" onclick="abrirConfiguracao('conexoes')">
+
+                <i class="fa-solid fa-wifi settings-icon"></i>
+
+                <span>Conexões</span>
+
+                <i class="fa-solid fa-chevron-right arrow"></i>
+
+            </button>
+
+            <!-- SISTEMA -->
+
+            <button class="settings-item" onclick="abrirConfiguracao('sistema')">
+
+                <i class="fa-solid fa-sliders settings-icon"></i>
+
+                <span>Sistema</span>
+
+                <i class="fa-solid fa-chevron-right arrow"></i>
+
+            </button>
+
+            <!-- SOBRE O APP -->
+
+            <button class="settings-item" onclick="abrirConfiguracao('sobre')">
+
+                <i class="fa-solid fa-circle-info settings-icon"></i>
+
+                <span>Sobre o App</span>
+
+                <i class="fa-solid fa-chevron-right arrow"></i>
+
+            </button>
+
+        </section>
+
+        <!-- SAIR DA CONTA -->
+
+        <button class="logout-button" onclick="sairConta()">
+
+            <i class="fa-solid fa-right-from-bracket"></i>
+
+            Sair da Conta
+
+        </button>
+
+    </main>
+
+</div>
+
+<!-- MODAL DE CONFIGURAÇÕES -->
+
+<div class="modal-overlay" id="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2 id="modal-titulo"></h2>
+
+            <button class="close-modal" onclick="fecharModal()" aria-label="Fechar">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+        <div class="modal-body" id="modal-corpo"></div>
+
+    </div>
+
+</div>
+
+<script>
+
+    // ABRIR CONFIGURAÇÕES
+
+    function abrirConfiguracao(opcao) {
+
+        const titulo = document.getElementById("modal-titulo");
+
+        const corpo = document.getElementById("modal-corpo");
+
+        document.getElementById("modal").classList.add("show");
+
+
+        // CONTA
+
+        if (opcao === "conta") {
+
+            titulo.textContent = "Minha conta";
+
+            corpo.innerHTML = `
+                <label>Nome do usuário</label>
+
+                <input type="text" id="nome" placeholder="Seu nome">
+
+                <label>E-mail</label>
+
+                <input type="email" id="email" placeholder="Seu e-mail">
+
+                <button class="save-button" onclick="salvarConta()">
+                    Salvar alterações
+                </button>
+            `;
+
+            document.getElementById("nome").value =
+                localStorage.getItem("ifagendas_nome") || "";
+
+            document.getElementById("email").value =
+                localStorage.getItem("ifagendas_email") || "";
+
+        }
+
+
+        // NOTIFICAÇÕES
+
+        else if (opcao === "notificacoes") {
+
+            titulo.textContent = "Notificações";
+
+            corpo.innerHTML = `
+
+                <div class="option-row">
+
+                    <span>Lembretes de tarefas</span>
+
+                    <input type="checkbox" id="lembretes">
+
+                </div>
+
+                <div class="option-row">
+
+                    <span>Avisos de metas</span>
+
+                    <input type="checkbox" id="avisos">
+
+                </div>
+
+                <div class="option-row">
+
+                    <span>Notificações de estudos</span>
+
+                    <input type="checkbox" id="estudos">
+
+                </div>
+
+                <button class="save-button" onclick="salvarNotificacoes()">
+                    Salvar preferências
+                </button>
+
+            `;
+
+            ["lembretes", "avisos", "estudos"].forEach(function(id) {
+
+                document.getElementById(id).checked =
+                    localStorage.getItem("ifagendas_" + id) === "true";
+
+            });
+
+        }
+
+
+        // APARÊNCIA
+
+        else if (opcao === "aparencia") {
+
+            titulo.textContent = "Aparência";
+
+            corpo.innerHTML = `
+
+                <label>Escolha o tema da página</label>
+
+                <select id="tema">
+
+                    <option value="claro">Modo claro</option>
+
+                    <option value="escuro">Modo escuro</option>
+
+                </select>
+
+                <button class="save-button" onclick="salvarAparencia()">
+                    Aplicar tema
+                </button>
+
+            `;
+
+            document.getElementById("tema").value =
+                localStorage.getItem("ifagendas_tema") || "claro";
+
+        }
+
+
+        // PRIVACIDADE
+
+        else if (opcao === "privacidade") {
+
+            titulo.textContent = "Privacidade e Segurança";
+
+            corpo.innerHTML = `
+
+                <p>Gerencie a segurança e a privacidade da sua conta.</p>
+
+                <p>As configurações de senha e segurança estarão disponíveis após a integração com o banco de dados.</p>
+
+            `;
+
+        }
+
+
+        // CONEXÕES
+
+        else if (opcao === "conexoes") {
+
+            titulo.textContent = "Conexões";
+
+            corpo.innerHTML = `
+
+                <p>Status da internet:</p>
+
+                <strong id="status-conexao"></strong>
+
+                <p>Nenhuma conta externa vinculada.</p>
+
+            `;
+
+            document.getElementById("status-conexao").textContent =
+                navigator.onLine ? "Online" : "Offline";
+
+        }
+
+
+        // SISTEMA
+
+        else if (opcao === "sistema") {
+
+            titulo.textContent = "Sistema";
+
+            corpo.innerHTML = `
+
+                <p>Idioma: Português (Brasil)</p>
+
+                <p>Versão: 1.0.0</p>
+
+                <p>Plataforma: Web</p>
+
+                <button class="save-button" onclick="restaurarConfiguracoes()">
+                    Restaurar preferências
+                </button>
+
+            `;
+
+        }
+
+
+        // SOBRE O APP
+
+        else if (opcao === "sobre") {
+
+            titulo.textContent = "Sobre o IFAgendas";
+
+            corpo.innerHTML = `
+
+                <p><strong>IFAgendas - Versão 1.0</strong></p>
+
+                <p>O IFAgendas é uma plataforma desenvolvida para auxiliar estudantes na organização de tarefas, metas, atividades e rotinas de estudo.</p>
+
+                <p>Desenvolvido por estudantes do IFSP.</p>
+
+            `;
+
+        }
+
+    }
+
+
+    // FECHAR MODAL
+
+    function fecharModal() {
+
+        document.getElementById("modal").classList.remove("show");
+
+    }
+
+
+    // FECHAR AO CLICAR FORA
+
+    document.getElementById("modal").addEventListener("click", function(event) {
+
+        if (event.target === this) {
+
+            fecharModal();
+
+        }
+
+    });
+
+
+    // SALVAR CONTA
+
+    function salvarConta() {
+
+        const nome = document.getElementById("nome").value.trim();
+
+        const email = document.getElementById("email").value.trim();
+
+        if (!nome || !email) {
+
+            alert("Preencha todos os campos.");
+
+            return;
+
+        }
+
+        if (!document.getElementById("email").checkValidity()) {
+
+            alert("Digite um e-mail válido.");
+
+            return;
+
+        }
+
+        localStorage.setItem("ifagendas_nome", nome);
+
+        localStorage.setItem("ifagendas_email", email);
+
+        alert("Dados salvos neste navegador!");
+
+        fecharModal();
+
+    }
+
+
+    // SALVAR NOTIFICAÇÕES
+
+    function salvarNotificacoes() {
+
+        ["lembretes", "avisos", "estudos"].forEach(function(id) {
+
+            localStorage.setItem(
+                "ifagendas_" + id,
+                document.getElementById(id).checked
+            );
+
+        });
+
+        alert("Preferências salvas!");
+
+        fecharModal();
+
+    }
+
+
+    // SALVAR APARÊNCIA
+
+    function salvarAparencia() {
+
+        const tema = document.getElementById("tema").value;
+
+        localStorage.setItem("ifagendas_tema", tema);
+
+        aplicarTema();
+
+        fecharModal();
+
+    }
+
+
+    // APLICAR TEMA
+
+    function aplicarTema() {
+
+        const tema = localStorage.getItem("ifagendas_tema");
+
+        document.body.classList.toggle(
+            "dark-mode",
+            tema === "escuro"
+        );
+
+    }
+
+
+    // RESTAURAR CONFIGURAÇÕES
+
+    function restaurarConfiguracoes() {
+
+        if (confirm("Deseja restaurar as preferências de aparência e notificações?")) {
+
+            localStorage.removeItem("ifagendas_tema");
+
+            localStorage.removeItem("ifagendas_lembretes");
+
+            localStorage.removeItem("ifagendas_avisos");
+
+            localStorage.removeItem("ifagendas_estudos");
+
+            aplicarTema();
+
+            fecharModal();
+
+            alert("Preferências restauradas!");
+
+        }
+
+    }
+
+
+    // SAIR DA CONTA
+
+    function sairConta() {
+
+        if (confirm("Deseja realmente sair da conta?")) {
+
+            window.location.href = "index.html";
+
+        }
+
+    }
+
+
+    // CARREGAR TEMA SALVO
+
+    aplicarTema();
+
+</script>
+
+</body>
+
+</html>
