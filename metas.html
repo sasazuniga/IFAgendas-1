@@ -1,0 +1,549 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>IFAgendas - Metas</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/metas.css">
+
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        .delete-goal {
+            margin-left: auto;
+            background: transparent;
+            border: none;
+            color: #b94a48;
+            cursor: pointer;
+            font-size: 14px;
+            padding: 8px;
+            border-radius: 6px;
+            transition: 0.2s;
+        }
+
+        .delete-goal:hover {
+            background-color: #ffe5e5;
+            color: #d32f2f;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <!-- MENU LATERAL -->
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+            <div class="logo-box">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>IFAgendas</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="inicio.html" class="nav-item">
+                <i class="fa-solid fa-house"></i>
+            </a>
+
+            <a href="calendario.html" class="nav-item">
+                <i class="fa-solid fa-calendar-days"></i>
+            </a>
+
+            <a href="estudos-recentes.html" class="nav-item">
+                <i class="fa-solid fa-book-open"></i>
+            </a>
+
+            <a href="tarefas.html" class="nav-item">
+                <i class="fa-solid fa-clipboard-list"></i>
+            </a>
+
+            <a href="#" class="nav-item">
+                <i class="fa-solid fa-chart-line"></i>
+            </a>
+
+            <a href="metas.html" class="nav-item active">
+                <i class="fa-solid fa-bullseye"></i>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="#" class="nav-item">
+                <i class="fa-solid fa-gear"></i>
+            </a>
+        </div>
+
+    </aside>
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="main-content">
+
+        <!-- CABEÇALHO -->
+        <header class="top-header">
+
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    id="pesquisa"
+                    placeholder="Metas">
+            </div>
+
+            <div class="user-profile">
+                <i class="fa-solid fa-circle-user"></i>
+            </div>
+
+        </header>
+
+        <!-- BANNER -->
+        <section class="welcome-banner">
+
+            <div class="welcome-text">
+                <h1>Metas</h1>
+            </div>
+
+            <div class="welcome-badge">
+                <span>Defina seus objetivos</span>
+            </div>
+
+        </section>
+
+        <!-- CARTÕES DE METAS -->
+        <section class="goals-container">
+
+            <!-- CURTO PRAZO -->
+            <div class="goal-card" data-category="curto">
+
+                <div class="goal-header">
+
+                    <div class="goal-title">
+                        <i class="fa-solid fa-chart-column"></i>
+                        <h2>A curto prazo</h2>
+                    </div>
+
+                    <span class="goal-count" id="count-curto">3/5</span>
+
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-curto"></div>
+                </div>
+
+                <div class="goal-list" id="list-curto"></div>
+
+                <div class="goal-footer">
+                    <button onclick="abrirModal('curto')">
+                        <i class="fa-solid fa-circle-plus"></i>
+                        Adicionar metas
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- MÉDIO PRAZO -->
+            <div class="goal-card" data-category="medio">
+
+                <div class="goal-header">
+
+                    <div class="goal-title">
+                        <i class="fa-solid fa-chart-column"></i>
+                        <h2>A médio prazo</h2>
+                    </div>
+
+                    <span class="goal-count" id="count-medio">1/4</span>
+
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-medio"></div>
+                </div>
+
+                <div class="goal-list" id="list-medio"></div>
+
+                <div class="goal-footer">
+                    <button onclick="abrirModal('medio')">
+                        <i class="fa-solid fa-circle-plus"></i>
+                        Adicionar metas
+                    </button>
+                </div>
+
+            </div>
+
+            <!-- LONGO PRAZO -->
+            <div class="goal-card" data-category="longo">
+
+                <div class="goal-header">
+
+                    <div class="goal-title">
+                        <i class="fa-solid fa-chart-column"></i>
+                        <h2>A longo prazo</h2>
+                    </div>
+
+                    <span class="goal-count" id="count-longo">1/2</span>
+
+                </div>
+
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-longo"></div>
+                </div>
+
+                <div class="goal-list" id="list-longo"></div>
+
+                <div class="goal-footer">
+                    <button onclick="abrirModal('longo')">
+                        <i class="fa-solid fa-circle-plus"></i>
+                        Adicionar metas
+                    </button>
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+<!-- MODAL PARA ADICIONAR META -->
+<div class="modal-overlay" id="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2>Adicionar meta</h2>
+
+            <button
+                type="button"
+                class="close-modal"
+                onclick="fecharModal()">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+        <form id="form-meta">
+
+            <label for="nome-meta">Nome da meta</label>
+
+            <input
+                type="text"
+                id="nome-meta"
+                placeholder="Digite sua meta"
+                required
+                maxlength="100">
+
+            <label for="categoria-meta">Prazo</label>
+
+            <select id="categoria-meta" required>
+
+                <option value="curto">Curto prazo</option>
+                <option value="medio">Médio prazo</option>
+                <option value="longo">Longo prazo</option>
+
+            </select>
+
+            <button type="submit" class="save-goal-btn">
+                <i class="fa-solid fa-plus"></i>
+                Adicionar meta
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- JAVASCRIPT -->
+<script>
+
+// METAS INICIAIS
+const metasIniciais = {
+
+    curto: [
+        { id: 1, nome: "Estudar para prova do Berg", concluida: true },
+        { id: 2, nome: "Seminário de história", concluida: false },
+        { id: 3, nome: "Pesquisa de biologia", concluida: true },
+        { id: 4, nome: "Exercícios de matemática", concluida: true },
+        { id: 5, nome: "Fazer a redação", concluida: false }
+    ],
+
+    medio: [
+        { id: 6, nome: "Treinar apresentação", concluida: true },
+        { id: 7, nome: "Entregar projeto do Caio", concluida: false },
+        { id: 8, nome: "Montar coreografia para Irlla", concluida: false },
+        { id: 9, nome: "Começar projeto do Ed", concluida: false }
+    ],
+
+    longo: [
+        { id: 10, nome: "Estudar para vestibulares", concluida: true },
+        { id: 11, nome: "TCC", concluida: false }
+    ]
+
+};
+
+
+// CARREGAR METAS SALVAS
+let metas;
+
+try {
+
+    const dadosSalvos = localStorage.getItem("ifagendas_metas");
+
+    metas = dadosSalvos
+        ? JSON.parse(dadosSalvos)
+        : metasIniciais;
+
+    if (!metas || !metas.curto || !metas.medio || !metas.longo) {
+        metas = metasIniciais;
+    }
+
+} catch (erro) {
+    metas = metasIniciais;
+}
+
+
+// SALVAR METAS
+function salvarMetas() {
+
+    localStorage.setItem(
+        "ifagendas_metas",
+        JSON.stringify(metas)
+    );
+
+}
+
+
+// RENDERIZAR METAS
+function renderizarMetas() {
+
+    const categorias = ["curto", "medio", "longo"];
+
+    categorias.forEach(function(categoria) {
+
+        const lista = document.getElementById("list-" + categoria);
+
+        lista.innerHTML = "";
+
+        metas[categoria].forEach(function(meta) {
+
+            const item = document.createElement("div");
+            item.className = "goal-item";
+
+            const checkbox = document.createElement("input");
+            checkbox.type = "checkbox";
+            checkbox.checked = meta.concluida;
+
+            checkbox.setAttribute("aria-label", meta.nome);
+
+            checkbox.addEventListener("change", function() {
+
+                meta.concluida = checkbox.checked;
+
+                salvarMetas();
+                renderizarMetas();
+
+            });
+
+            const texto = document.createElement("span");
+            texto.textContent = meta.nome;
+
+            if (meta.concluida) {
+                texto.classList.add("completed");
+            }
+
+            texto.addEventListener("click", function() {
+                meta.concluida = !meta.concluida;
+                salvarMetas();
+                renderizarMetas();
+            });
+
+            // BOTÃO PARA EXCLUIR META
+            const excluir = document.createElement("button");
+
+            excluir.type = "button";
+            excluir.className = "delete-goal";
+            excluir.title = "Excluir meta";
+            excluir.setAttribute("aria-label", "Excluir " + meta.nome);
+
+            excluir.innerHTML = '<i class="fa-solid fa-trash"></i>';
+
+            excluir.addEventListener("click", function(event) {
+
+                event.preventDefault();
+                event.stopPropagation();
+
+                excluirMeta(categoria, meta.id);
+
+            });
+
+            item.appendChild(checkbox);
+            item.appendChild(texto);
+            item.appendChild(excluir);
+
+            lista.appendChild(item);
+
+        });
+
+        atualizarProgresso(categoria);
+
+    });
+
+    aplicarPesquisa();
+
+}
+
+
+// EXCLUIR META
+function excluirMeta(categoria, id) {
+
+    const confirmar = confirm("Deseja realmente excluir esta meta?");
+
+    if (confirmar) {
+
+        metas[categoria] = metas[categoria].filter(function(meta) {
+            return meta.id !== id;
+        });
+
+        salvarMetas();
+
+        renderizarMetas();
+
+    }
+
+}
+
+
+// ATUALIZAR PROGRESSO
+function atualizarProgresso(categoria) {
+
+    const total = metas[categoria].length;
+
+    const concluidas = metas[categoria].filter(function(meta) {
+        return meta.concluida;
+    }).length;
+
+    const porcentagem = total > 0
+        ? (concluidas / total) * 100
+        : 0;
+
+    document.getElementById("count-" + categoria).textContent =
+        concluidas + "/" + total;
+
+    document.getElementById("progress-" + categoria).style.width =
+        porcentagem + "%";
+
+}
+
+
+// ABRIR MODAL
+function abrirModal(categoria) {
+
+    document.getElementById("modal").classList.add("show");
+
+    document.getElementById("categoria-meta").value = categoria;
+
+    document.getElementById("nome-meta").focus();
+
+}
+
+
+// FECHAR MODAL
+function fecharModal() {
+
+    document.getElementById("modal").classList.remove("show");
+
+    document.getElementById("form-meta").reset();
+
+}
+
+
+// FECHAR AO CLICAR FORA
+document.getElementById("modal").addEventListener("click", function(event) {
+
+    if (event.target === this) {
+        fecharModal();
+    }
+
+});
+
+
+// ADICIONAR NOVA META
+document.getElementById("form-meta").addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const nome = document.getElementById("nome-meta").value.trim();
+
+    const categoria = document.getElementById("categoria-meta").value;
+
+    if (!nome) {
+        alert("Digite o nome da meta.");
+        return;
+    }
+
+    const novaMeta = {
+
+        id: Date.now(),
+
+        nome: nome,
+
+        concluida: false
+
+    };
+
+    metas[categoria].push(novaMeta);
+
+    salvarMetas();
+
+    renderizarMetas();
+
+    fecharModal();
+
+    alert("Meta adicionada com sucesso!");
+
+});
+
+
+// PESQUISAR METAS
+function aplicarPesquisa() {
+
+    const pesquisa = document.getElementById("pesquisa")
+        .value.toLowerCase();
+
+    document.querySelectorAll(".goal-item").forEach(function(item) {
+
+        const texto = item.innerText.toLowerCase();
+
+        item.style.display = texto.includes(pesquisa)
+            ? "flex"
+            : "none";
+
+    });
+
+}
+
+document.getElementById("pesquisa").addEventListener("input", aplicarPesquisa);
+
+
+// INICIAR PÁGINA
+renderizarMetas();
+
+</script>
+
+</body>
+</html>
