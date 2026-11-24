@@ -1,0 +1,861 @@
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>IFAgendas - Tarefas</title>
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/dashboard.css">
+    <link rel="stylesheet" href="css/tarefas.css">
+
+    <!-- Ícones -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+</head>
+
+<body>
+
+<div class="app-container">
+
+    <!-- BARRA LATERAL -->
+    <aside class="sidebar">
+
+        <div class="sidebar-logo">
+            <div class="logo-box">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>IFAgendas</span>
+            </div>
+        </div>
+
+        <nav class="sidebar-nav">
+
+            <a href="inicio.html" class="nav-item">
+                <i class="fa-solid fa-house"></i>
+            </a>
+
+            <a href="calendario.html" class="nav-item">
+                <i class="fa-solid fa-calendar-days"></i>
+            </a>
+
+            <a href="estudos-recentes.html" class="nav-item">
+                <i class="fa-solid fa-book-open"></i>
+            </a>
+
+            <a href="tarefas.html" class="nav-item active">
+                <i class="fa-solid fa-clipboard-list"></i>
+            </a>
+
+            <a href="#" class="nav-item">
+                <i class="fa-solid fa-chart-line"></i>
+            </a>
+
+            <a href="#" class="nav-item">
+                <i class="fa-solid fa-bullseye"></i>
+            </a>
+
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="#" class="nav-item">
+                <i class="fa-solid fa-gear"></i>
+            </a>
+        </div>
+
+    </aside>
+
+
+    <!-- CONTEÚDO PRINCIPAL -->
+    <main class="main-content">
+
+
+        <!-- CABEÇALHO -->
+        <header class="top-header">
+
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+
+                <input
+                    type="text"
+                    id="pesquisa"
+                    placeholder="Tarefas">
+            </div>
+
+            <div class="user-profile">
+                <i class="fa-solid fa-circle-user"></i>
+            </div>
+
+        </header>
+
+
+        <!-- BANNER -->
+        <section class="welcome-banner">
+
+            <div class="welcome-text">
+                <h1>Tarefas</h1>
+            </div>
+
+            <div class="welcome-badge">
+                <span>Foque nas suas atividades neste tempo</span>
+            </div>
+
+        </section>
+
+
+        <!-- ÁREA DE AÇÕES -->
+        <section class="task-actions">
+
+
+            <!-- FILTROS -->
+            <div class="task-filters">
+
+                <button
+                    type="button"
+                    class="filter-btn active"
+                    data-filtro="todos">
+
+                    Todos
+
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-btn"
+                    data-filtro="pendentes">
+
+                    <i class="fa-regular fa-circle"></i>
+                    Pendentes
+
+                </button>
+
+                <button
+                    type="button"
+                    class="filter-btn"
+                    data-filtro="concluidas">
+
+                    <i class="fa-solid fa-circle-check"></i>
+                    Concluídas
+
+                </button>
+
+            </div>
+
+
+            <!-- BOTÃO ADICIONAR -->
+            <button
+                type="button"
+                class="add-task-btn"
+                onclick="abrirModal()">
+
+                <i class="fa-solid fa-plus"></i>
+                Adicionar tarefa
+
+            </button>
+
+        </section>
+
+
+
+        <!-- QUADRO DE TAREFAS -->
+        <section class="task-board">
+
+
+            <!-- COLUNA A FAZER -->
+            <div class="task-column">
+
+                <div class="column-header">
+
+                    <div>
+                        <span class="status-dot"></span>
+                        <h2>A fazer</h2>
+                    </div>
+
+                    <span class="task-count">2</span>
+
+                </div>
+
+
+                <div class="task-list" id="a-fazer">
+
+
+                    <!-- TAREFA MATEMÁTICA -->
+                    <article class="task-card" data-status="pendente">
+
+                        <div class="task-title">
+
+                            <input type="checkbox">
+
+                            <h3>Revisar Matemática</h3>
+
+                        </div>
+
+                        <p class="task-date">
+                            <i class="fa-regular fa-calendar"></i>
+                            Hoje
+                        </p>
+
+                        <div class="task-tags">
+
+                            <span class="subject-tag matematica">
+                                Matemática
+                            </span>
+
+                            <span class="priority-tag alta">
+                                Prioridade Alta
+                            </span>
+
+                        </div>
+
+                    </article>
+
+
+                    <!-- TAREFA HISTÓRIA -->
+                    <article class="task-card" data-status="pendente">
+
+                        <div class="task-title">
+
+                            <input type="checkbox">
+
+                            <h3>Ler capítulo de História</h3>
+
+                        </div>
+
+                        <p class="task-date">
+                            <i class="fa-regular fa-calendar"></i>
+                            Hoje
+                        </p>
+
+                        <div class="task-tags">
+
+                            <span class="subject-tag historia">
+                                História
+                            </span>
+
+                            <span class="priority-tag media">
+                                Prioridade Média
+                            </span>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- COLUNA FAZENDO -->
+            <div class="task-column">
+
+                <div class="column-header">
+
+                    <div>
+                        <span class="status-dot"></span>
+                        <h2>Fazendo</h2>
+                    </div>
+
+                    <span class="task-count">1</span>
+
+                </div>
+
+
+                <div class="task-list" id="fazendo">
+
+
+                    <article class="task-card" data-status="pendente">
+
+                        <div class="task-title">
+
+                            <input type="checkbox">
+
+                            <h3>Fazer resumo de Biologia</h3>
+
+                        </div>
+
+                        <p class="task-date">
+                            <i class="fa-regular fa-calendar"></i>
+                            16/09
+                        </p>
+
+                        <div class="task-tags">
+
+                            <span class="subject-tag biologia">
+                                Biologia
+                            </span>
+
+                            <span class="priority-tag media">
+                                Prioridade Média
+                            </span>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- COLUNA ATRASADAS -->
+            <div class="task-column overdue-column">
+
+                <div class="column-header">
+
+                    <div>
+                        <span class="status-dot"></span>
+                        <h2>Atrasadas</h2>
+                    </div>
+
+                    <span class="task-count">1</span>
+
+                </div>
+
+
+                <div class="task-list" id="atrasadas">
+
+
+                    <article class="task-card" data-status="pendente">
+
+                        <div class="task-title">
+
+                            <input type="checkbox">
+
+                            <h3>Entregar o trabalho de Geografia</h3>
+
+                        </div>
+
+                        <p class="task-date">
+                            <i class="fa-regular fa-calendar"></i>
+                            Ontem
+                        </p>
+
+                        <div class="task-tags">
+
+                            <span class="subject-tag geografia">
+                                Geografia
+                            </span>
+
+                            <span class="priority-tag alta">
+                                Prioridade Alta
+                            </span>
+
+                        </div>
+
+                        <p class="overdue-message">
+                            Atrasada 1 dia
+                        </p>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- COLUNA CONCLUÍDAS -->
+            <div class="task-column">
+
+                <div class="column-header">
+
+                    <div>
+                        <span class="status-dot"></span>
+                        <h2>Concluídas</h2>
+                    </div>
+
+                    <span class="task-count">1</span>
+
+                </div>
+
+
+                <div class="task-list" id="concluidas">
+
+
+                    <article class="task-card" data-status="concluida">
+
+                        <div class="task-title">
+
+                            <input type="checkbox" checked>
+
+                            <h3>Resolver exercícios de Português</h3>
+
+                        </div>
+
+                        <p class="task-date">
+                            <i class="fa-regular fa-calendar"></i>
+                            13/09
+                        </p>
+
+                        <div class="task-tags">
+
+                            <span class="subject-tag portugues">
+                                Português
+                            </span>
+
+                            <span class="priority-tag baixa">
+                                Prioridade Baixa
+                            </span>
+
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+<!-- MODAL DE ADICIONAR TAREFA -->
+<div class="modal-overlay" id="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2>Adicionar tarefa</h2>
+
+            <button
+                type="button"
+                class="close-modal"
+                onclick="fecharModal()">
+
+                <i class="fa-solid fa-xmark"></i>
+
+            </button>
+
+        </div>
+
+
+        <!-- FORMULÁRIO -->
+        <form id="form-tarefa">
+
+
+            <label for="titulo">Nome da tarefa</label>
+
+            <input
+                type="text"
+                id="titulo"
+                placeholder="Digite o nome da tarefa"
+                required>
+
+
+            <label for="materia">Matéria</label>
+
+            <select id="materia" required>
+
+                <option value="">Selecione uma matéria</option>
+                <option value="Matemática">Matemática</option>
+                <option value="História">História</option>
+                <option value="Biologia">Biologia</option>
+                <option value="Geografia">Geografia</option>
+                <option value="Português">Português</option>
+                <option value="Química">Química</option>
+                <option value="Física">Física</option>
+                <option value="Inglês">Inglês</option>
+
+            </select>
+
+
+            <label for="prazo">Data de entrega</label>
+
+            <input
+                type="date"
+                id="prazo"
+                required>
+
+
+            <label for="prioridade">Prioridade</label>
+
+            <select id="prioridade" required>
+
+                <option value="Alta">Alta</option>
+                <option value="Média" selected>Média</option>
+                <option value="Baixa">Baixa</option>
+
+            </select>
+
+
+            <label for="status">Situação</label>
+
+            <select id="status">
+
+                <option value="a-fazer">A fazer</option>
+                <option value="fazendo">Fazendo</option>
+
+            </select>
+
+
+            <button type="submit" class="save-task-btn">
+
+                <i class="fa-solid fa-plus"></i>
+                Adicionar tarefa
+
+            </button>
+
+        </form>
+
+    </div>
+
+</div>
+
+
+
+<!-- JAVASCRIPT INTEGRADO -->
+<script>
+
+// VARIÁVEL DO FILTRO
+let filtroAtual = "todos";
+
+
+// ABRIR MODAL
+function abrirModal() {
+
+    document.getElementById("modal").classList.add("show");
+
+}
+
+
+// FECHAR MODAL
+function fecharModal() {
+
+    document.getElementById("modal").classList.remove("show");
+
+}
+
+
+// FECHAR CLICANDO FORA DO MODAL
+document.getElementById("modal").addEventListener("click", function(event) {
+
+    if (event.target === this) {
+        fecharModal();
+    }
+
+});
+
+
+// FILTRAR TAREFAS
+document.querySelectorAll(".filter-btn").forEach(function(botao) {
+
+    botao.addEventListener("click", function() {
+
+        filtroAtual = this.dataset.filtro;
+
+        document.querySelectorAll(".filter-btn").forEach(function(btn) {
+            btn.classList.remove("active");
+        });
+
+        this.classList.add("active");
+
+        atualizarTarefas();
+
+    });
+
+});
+
+
+// ATUALIZAR TAREFAS
+function atualizarTarefas() {
+
+    const cards = document.querySelectorAll(".task-card");
+
+    const pesquisa = document.getElementById("pesquisa")
+        .value.toLowerCase();
+
+    cards.forEach(function(card) {
+
+        const status = card.dataset.status;
+        const texto = card.innerText.toLowerCase();
+
+        let mostrar = true;
+
+        if (filtroAtual === "pendentes" && status !== "pendente") {
+            mostrar = false;
+        }
+
+        if (filtroAtual === "concluidas" && status !== "concluida") {
+            mostrar = false;
+        }
+
+        if (!texto.includes(pesquisa)) {
+            mostrar = false;
+        }
+
+        card.style.display = mostrar ? "flex" : "none";
+
+    });
+
+    atualizarContagem();
+
+}
+
+
+// ATUALIZAR CONTAGEM
+function atualizarContagem() {
+
+    document.querySelectorAll(".task-column").forEach(function(coluna) {
+
+        const quantidade = coluna.querySelectorAll(".task-card").length;
+
+        coluna.querySelector(".task-count").textContent = quantidade;
+
+    });
+
+}
+
+
+// CONCLUIR TAREFA
+function concluirTarefa(checkbox) {
+
+    const card = checkbox.closest(".task-card");
+
+    if (checkbox.checked) {
+
+        card.dataset.status = "concluida";
+
+        const aviso = card.querySelector(".overdue-message");
+
+        if (aviso) {
+            aviso.remove();
+        }
+
+        document.getElementById("concluidas").appendChild(card);
+
+    } else {
+
+        card.dataset.status = "pendente";
+
+        document.getElementById("a-fazer").appendChild(card);
+
+    }
+
+    atualizarTarefas();
+
+}
+
+
+// IDENTIFICAR MATÉRIA
+function classeMateria(materia) {
+
+    const classes = {
+
+        "Matemática": "matematica",
+        "História": "historia",
+        "Biologia": "biologia",
+        "Geografia": "geografia",
+        "Português": "portugues",
+        "Química": "quimica",
+        "Física": "fisica",
+        "Inglês": "ingles"
+
+    };
+
+    return classes[materia] || "biologia";
+
+}
+
+
+// IDENTIFICAR PRIORIDADE
+function classePrioridade(prioridade) {
+
+    const classes = {
+
+        "Alta": "alta",
+        "Média": "media",
+        "Baixa": "baixa"
+
+    };
+
+    return classes[prioridade] || "media";
+
+}
+
+
+// ADICIONAR TAREFA
+document.getElementById("form-tarefa").addEventListener("submit", function(event) {
+
+    event.preventDefault();
+
+    const titulo = document.getElementById("titulo").value.trim();
+    const materia = document.getElementById("materia").value;
+    const prazo = document.getElementById("prazo").value;
+    const prioridade = document.getElementById("prioridade").value;
+    const statusEscolhido = document.getElementById("status").value;
+
+    if (!titulo || !materia || !prazo) {
+        alert("Preencha todos os campos!");
+        return;
+    }
+
+
+    // VERIFICAR SE ESTÁ ATRASADA
+    const dataTarefa = new Date(prazo + "T00:00:00");
+
+    const hoje = new Date();
+
+    hoje.setHours(0, 0, 0, 0);
+
+    const atrasada = dataTarefa < hoje;
+
+
+    // ESCOLHER COLUNA
+    let coluna;
+
+    if (atrasada) {
+
+        coluna = document.getElementById("atrasadas");
+
+    } else {
+
+        coluna = document.getElementById(statusEscolhido);
+
+    }
+
+
+    // CRIAR CARD
+    const card = document.createElement("article");
+
+    card.className = "task-card";
+    card.dataset.status = "pendente";
+
+
+    // TÍTULO
+    const tituloDiv = document.createElement("div");
+
+    tituloDiv.className = "task-title";
+
+
+    const checkbox = document.createElement("input");
+
+    checkbox.type = "checkbox";
+
+
+    const tituloH3 = document.createElement("h3");
+
+    tituloH3.textContent = titulo;
+
+
+    tituloDiv.appendChild(checkbox);
+    tituloDiv.appendChild(tituloH3);
+
+
+    // DATA
+    const dataDiv = document.createElement("p");
+
+    dataDiv.className = "task-date";
+
+
+    const icone = document.createElement("i");
+
+    icone.className = "fa-regular fa-calendar";
+
+
+    const partes = prazo.split("-");
+
+    dataDiv.appendChild(icone);
+
+    dataDiv.appendChild(
+        document.createTextNode(" " + partes[2] + "/" + partes[1])
+    );
+
+
+    // ETIQUETAS
+    const tags = document.createElement("div");
+
+    tags.className = "task-tags";
+
+
+    const tagMateria = document.createElement("span");
+
+    tagMateria.className = "subject-tag " + classeMateria(materia);
+
+    tagMateria.textContent = materia;
+
+
+    const tagPrioridade = document.createElement("span");
+
+    tagPrioridade.className = "priority-tag " + classePrioridade(prioridade);
+
+    tagPrioridade.textContent = "Prioridade " + prioridade;
+
+
+    tags.appendChild(tagMateria);
+    tags.appendChild(tagPrioridade);
+
+
+    // ADICIONAR AO CARD
+    card.appendChild(tituloDiv);
+    card.appendChild(dataDiv);
+    card.appendChild(tags);
+
+
+    // AVISO DE ATRASO
+    if (atrasada) {
+
+        const aviso = document.createElement("p");
+
+        aviso.className = "overdue-message";
+
+        aviso.textContent = "Tarefa atrasada";
+
+        card.appendChild(aviso);
+
+    }
+
+
+    // COLOCAR NA COLUNA
+    coluna.appendChild(card);
+
+
+    // LIMPAR FORMULÁRIO
+    document.getElementById("form-tarefa").reset();
+
+    fecharModal();
+
+
+    // ATUALIZAR PÁGINA
+    atualizarTarefas();
+
+    alert("Tarefa adicionada com sucesso!");
+
+});
+
+
+// IDENTIFICAR CLIQUE NAS CAIXINHAS
+document.addEventListener("change", function(event) {
+
+    if (event.target.matches(".task-title input[type='checkbox']")) {
+
+        concluirTarefa(event.target);
+
+    }
+
+});
+
+
+// PESQUISAR TAREFAS
+document.getElementById("pesquisa").addEventListener("input", function() {
+
+    atualizarTarefas();
+
+});
+
+
+// INICIAR CONTAGEM
+atualizarTarefas();
+
+</script>
+
+</body>
+</html>
